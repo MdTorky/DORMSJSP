@@ -4,10 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.model.user;
 
 import databaseConnection.DbConnect;
 
@@ -18,27 +22,26 @@ import databaseConnection.DbConnect;
 public class userController {
 
 
-    @RequestMapping("/userRegister")
-  public String add(@RequestParam("first_name") String first_name, @RequestParam("last_name") String last_name, @RequestParam("email") String email, @RequestParam("password") String password) {
-        System.out.println("######### REGISTER UNDER USER CONTROLLER #############");
+  @RequestMapping("/userRegister")
+  public String add(@RequestParam("first_name") String first_name, @RequestParam("last_name") String last_name, @RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) {
 
-        int rowAffected = 0;
+    HttpSession session = request.getSession();    
+    int rowAffected = 0;
+    // user _user = new user();
+    // _user.setUserEmail(email);
+    // session.setAttribute("user", _user);
+        
     
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       Connection conn = DbConnect.openConnection();
       System.out.println("Connection successfully opened : " + conn.getMetaData());
 
-            String userFullName = first_name + " " + last_name;
-
-      
-//      String sql = "INSERT INTO trainee (name, weight, height, bmi) VALUES ('ali', 77.7, 1.77, 21)";
-//      Statement stmt = conn.createStatement();
+      String userFullName = first_name + " " + last_name;
       
       String sql = "INSERT INTO user (userFullName, userEmail, userPassword, userType) VALUES (?,?,?,?)";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       
-      //setDouble was used despite having the data type as float to not use casting to float
       pstmt.setString(1, userFullName);
       pstmt.setString(2, email);
       pstmt.setString(3, password);
@@ -46,7 +49,6 @@ public class userController {
       
       rowAffected = pstmt.executeUpdate();
       
-      //rowAffected = stmt.executeUpdate(sql);
   }
     catch (SQLException ex) {
       ex.printStackTrace();
@@ -54,7 +56,7 @@ public class userController {
     catch (ClassNotFoundException ex) {
       ex.printStackTrace();
     }
-    return "addParcel";
+    return "check_in_application";
   }
 
     
