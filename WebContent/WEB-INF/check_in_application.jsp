@@ -127,22 +127,22 @@
 
     <div id="main_container">
         <h1>Check in Application</h1>
-
+        <form action="checkInApp" action = "post">
         <div id="top_side">
 
             <div id="first_name">
                 <h3>First Name</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" name = "first_name">
             </div>
 
             <div id="last_name">
                 <h3>Last Name</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" name = "last_name">
             </div>
 
             <div id="passport_number">
                 <h3>Passport Number</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" name = "passport">
             </div>
 
         </div>
@@ -151,17 +151,17 @@
 
             <div id="email">
                 <h3>Email</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" name = "email">
             </div>
 
             <div id="check_in_date">
                 <h3>Check in Date</h3>
-                <input type="date" class="input_field">
+                <input type="date" class="input_field" name = "check_in_date">
             </div>
 
             <div id="phone_Number">
                 <h3>Phone Number</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" name = "phone_number">
             </div>
 
         </div>
@@ -170,7 +170,7 @@
 
             <div id="nationality">
                 <h3>Nationality</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" name = "nationality">
             </div>
 
         </div>
@@ -182,6 +182,8 @@
         <div id="checkbox" style="color: aliceblue; margin-left: 100px;">
             <input type="checkbox" id="terms_conditions"> I agree to the terms and conditions of Dorms Hostel Sdn Bhd
         </div>
+
+        </form>
 
 
 

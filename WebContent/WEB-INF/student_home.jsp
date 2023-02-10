@@ -108,14 +108,14 @@
 
             <div id="top_side">
                 <div id="button">
-                    <button type="submit" formaction="check_in_application.jsp" id="sign_in_button">Check In
+                    <button type="submit" formaction="checkIn" id="sign_in_button">Check In
                         Application</button>
                 </div>
 
                 <br><br>
 
                 <div id="button">
-                    <button type="submit" formaction="check_out_application.jsp" id="sign_in_button">Check Out
+                    <button type="submit" formaction="checkOut" id="sign_in_button">Check Out
                         Application</button>
                 </div>
 
