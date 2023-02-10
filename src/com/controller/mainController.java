@@ -12,7 +12,7 @@ public class mainController {
 	// MAIN HOME
 	@RequestMapping("/home")
 	public ModelAndView getHome() {
-		ModelAndView model = new ModelAndView("/home");
+		ModelAndView model = new ModelAndView("home");
 		return model;
 	}
 

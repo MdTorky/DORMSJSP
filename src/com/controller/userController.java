@@ -13,12 +13,12 @@ import databaseConnection.DbConnect;
 
 
 @Controller
-@RequestMapping("/user")
+
 
 public class userController {
 
 
-    @RequestMapping("/register")
+    @RequestMapping("/userRegister")
   public String add(@RequestParam("first_name") String first_name, @RequestParam("last_name") String last_name, @RequestParam("email") String email, @RequestParam("password") String password) {
         System.out.println("######### REGISTER UNDER USER CONTROLLER #############");
 

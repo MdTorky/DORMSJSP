@@ -128,7 +128,7 @@
     <div id="main_container">
         <h1>Registration</h1>
 
-        <form action="user/register" action="post">
+        <form action="userRegister" action="post">
             <div id="top_side">
 
                 <div id="first_name">
