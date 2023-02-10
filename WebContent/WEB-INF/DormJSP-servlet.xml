@@ -12,28 +12,30 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-		
-		
-		
+
+
+
 	<!-- With Annotation -->
-		 <context:component-scan base-package="com.controller" /> 
+	<context:component-scan
+		base-package="com.controller">
+	</context:component-scan>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 
 
-	<bean id="viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
-
-
-	<property name="prefix" value="/WEB-INF/" />
-	<property name="suffix" value=".jsp" />
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	
-	 <mvc:resources mapping="/styles/**" location="/styles/"  
-	cache-period="31556926"/>
 
 
- <mvc:resources mapping="/img/**" location="/img/"  
-	cache-period="31556926"/>
-    <mvc:annotation-driven />
-	
+	<mvc:resources mapping="/styles/**" location="/styles/"
+		cache-period="31556926" />
+
+
+	<mvc:resources mapping="/img/**" location="/img/"
+		cache-period="31556926" />
+	<mvc:annotation-driven />
+
 </beans>
 
