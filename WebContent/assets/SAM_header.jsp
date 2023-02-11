@@ -12,7 +12,7 @@
           <a href="managerCheckInApplications">Accommodation Applications</a>
           <a href="managerCheckOutApplications">Check-out Applications</a>
           <a href="facilityApplications">Facilities</a>
-          <a href="addParcel">Parcels</a>
+          <a href="getParcelUser">Parcels</a>
           <a href="getStorage">Storage</a>
           <a href="complaintsApplications">Complaints</a>
         </div></li>
