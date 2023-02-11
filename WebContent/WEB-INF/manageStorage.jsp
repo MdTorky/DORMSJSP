@@ -77,15 +77,28 @@
         <td class = "table-data">${st.storageStartDate}</td>
         <td class = "table-data">${st.storageStartEnd}</td>
         <c:if test = "${st.storageStatus == 'Paid'}">
-        <td class = "table-data" style="color:Green; font-weight:bold">${st.storageStatus}</td>
+        <td class = "table-data" style="color:Yellow; font-weight:bold">${st.storageStatus}</td>
         </c:if>
         <c:if test = "${st.storageStatus == 'Booked'}">
-        <td class = "table-data" style="color:Red; font-weight:bold">${st.storageStatus}</td>
+        <td class = "table-data" style="color:Orange; font-weight:bold">${st.storageStatus}</td>
+        </c:if>
+         <c:if test = "${st.storageStatus == 'Approved'}">
+        <td class = "table-data" style="color:Green; font-weight:bold">${st.storageStatus}</td>
+        </c:if>
+         <c:if test = "${st.storageStatus == 'Denied'}">
+        <td class = "table-data" style="color:red; font-weight:bold">${st.storageStatus}</td>
         </c:if>
         <td class = "table-data">
             <div class="column">
+            
+            <form action="approveStorage" method="post">
+            <input type="hidden" value="${st.storageId}" name="storageId">
                 <button class="approve">Approve</button>
+                </form>
+                <form action="denyStorage" method="post">
+                <input type="hidden" value="${st.storageId}" name="storageId">
                 <button class="deny">Deny</button>
+                </form>
             </div>
         </td>
     </tr>
