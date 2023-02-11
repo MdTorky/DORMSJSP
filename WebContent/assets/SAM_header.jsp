@@ -11,10 +11,10 @@
         <div class="dropdown"><li><a href="#manage" class="effect1" data-after="Manage"><span>Manage</span></a><div class="dropdown-content">
           <a href="managerCheckInApplications">Accommodation Applications</a>
           <a href="managerCheckOutApplications">Check-out Applications</a>
-          <a href="facilityApplications">Facilities</a>
+          <a href="getFacilities">Facilities</a>
           <a href="getParcelUser">Parcels</a>
           <a href="getStorage">Storage</a>
-          <a href="complaintsApplications">Complaints</a>
+          <a href="getComplaints">Complaints</a>
         </div></li>
         </div>
         <div class="dropdown"><li><a href="#view" class="effect1" data-after="View"><span>View</span></a><div class="dropdown-content">

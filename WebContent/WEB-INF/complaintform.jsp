@@ -110,26 +110,27 @@
     </style>
 </head>
 
-<body>
-
+<body >
+<jsp:useBean id="userObj" scope="session" class="com.model.user"></jsp:useBean>
     <div id="header"></div>
 
 
 
     <div id="main_container">
         <h1>Complaint Form</h1>
+        <form action = "addComplaint" method = "post">
 
-        <div class="arrange">
+        <div class="arrange" style="align-items: center; margin: auto; justify-content: center; display: flex;">
         <div id="left">
 
                 <div id="fname">
                     <h3>Name</h3>
-                    <input type="text" class="input_field">
+                    <input type="text" name="fname" value="<jsp:getProperty property="userFullName" name="userObj"/>" readonly class="input_field">
                 </div>
 
                 <div id="room_no">
                     <h3>Room Number</h3>
-                    <input type="text" class="input_field">
+                    <input type="text" name="roomNo" class="input_field">
                 </div>
 
          
@@ -137,12 +138,7 @@
 
                 <div id="mnumber">
                     <h3>Mobile</h3>
-                    <input type="text" class="input_field">
-                </div>
-
-                <div id="date">
-                    <h3>Date</h3>
-                    <input type="date" class="input_field">
+                    <input type="text" name="mnumber" value="<jsp:getProperty property="userPhoneNo" name="userObj"/>" readonly class="input_field">
                 </div>
 
               </div>
@@ -152,18 +148,18 @@
 
             <div id="tarea">
                 <h3>Complaint</h3>
-                <textarea cols="60" rows="20" placeholder="Write your complaint here"></textarea>
+                <textarea cols="60" rows="20" name = "complaint" placeholder="Write your complaint here"></textarea>
             </div>
 
         </div>
 
             <div id="button">
-                <button type="submit" formaction="login.jsp" id="sign_up_button">SUBMIT</button>
+                <button type="submit" id="sign_up_button">SUBMIT</button>
             </div>
 
             
        
-       
+       </form>
 
     </div>
 
