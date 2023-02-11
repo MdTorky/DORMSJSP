@@ -105,19 +105,51 @@
             margin: 100px;
         }
     </style>
+     <script>
+         $(function() {
+            $('#header').load('assets/header.jsp');
+         })
+        //  call header file and store it in id=header
+        </script>
+        
+         <style>
+        
+        h1{
+        justify-content:center;
+        align-items: center;
+        margin: auto;
+        text-align:center;
+        padding: 100px 0;
+  vertical-align: middle;
+        }
+        .title
+         {
+            color: gold;
+            font-family: verdana;
+            text-align: center;
+        }
+        
+        .file{
+        	background: gold;
+        	padding: 5px;
+        	color: #333333;
+        }
+        </style>
 </head>
 
 <body>
+<jsp:useBean id="userObj" scope="session" class="com.model.user"></jsp:useBean>
 
-    <a href="home.jsp"><img src="img/logo2.png"
-            style="width:300px; display: block; margin-left: auto; margin-right:auto"></a>
+    <!-- <a href="home.jsp"><img src="img/logo2.png"
+            style="width:300px; display: block; margin-left: auto; margin-right:auto"></a> -->
+            <section id="header"></section>
 
     <div id="main_container">
-        <h1>Welcome Student</h1>
+        <h1>Welcome <span class="file"><jsp:getProperty property="userFullName" name="userObj"/></span> </h1>
 
         <form>
 
-            <div id="top_side">
+           <!--  <div id="top_side">
                 <div id="button">
                     <button type="submit" formaction="checkIn" id="sign_in_button">Check In
                         Application</button>
@@ -152,7 +184,7 @@
 
                 <div id="button">
                     <button type="submit" formaction="Applied.jsp" id="sign_in_button">All Applications</button>
-                </div>
+                </div> -->
 
             </div>
         </form>
