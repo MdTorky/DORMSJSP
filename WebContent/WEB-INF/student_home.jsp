@@ -1,3 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
+<!-- If user is not logged in, do not allow entry to home page -->
+
+<%-- <%
+    if (session.getAttribute("name") == null){
+        response.sendRedirect("login");
+    }
+%> --%>
+
 <!DOCTYPE html>
 <html>
 

@@ -127,6 +127,7 @@
 
     <div id="header"></div>
 
+    <form action = "checkOutApp" method = "post">
     <div id="main_container">
         <h1>Check out Application</h1>
 
@@ -150,12 +151,12 @@
 
             <div id="check_out_date">
                 <h3>Check out Date</h3>
-                <input type="date" class="input_field">
+                <input type="date" class="input_field" name = "check_out_date">
             </div>
 
             <div id="check_out_time">
                 <h3>Check out Time</h3>
-                <input type="time" class="input_field">
+                <input type="time" class="input_field" name = "check_out_time">
             </div>
 
         </div>
@@ -168,9 +169,10 @@
             <input type="checkbox" id="terms_conditions"> I agree to the terms and conditions of Dorms Hostel Sdn Bhd
         </div>
 
-
+		
 
     </div>
+    </form>
 
 </body>
 
