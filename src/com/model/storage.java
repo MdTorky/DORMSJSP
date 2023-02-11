@@ -6,8 +6,8 @@ public class storage{
 
     int storageId;
     int userId;
-    Date storageStartDate;
-    Date storageStartEnd;
+    String storageStartDate;
+    String storageStartEnd;
     int storageBoxesNo;
     String storageStatus;
     String storageApproveRejectRemark;
@@ -24,16 +24,16 @@ public class storage{
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public Date getStorageStartDate() {
+	public String getStorageStartDate() {
 		return storageStartDate;
 	}
-	public void setStorageStartDate(Date storageStartDate) {
+	public void setStorageStartDate(String storageStartDate) {
 		this.storageStartDate = storageStartDate;
 	}
-	public Date getStorageStartEnd() {
+	public String getStorageStartEnd() {
 		return storageStartEnd;
 	}
-	public void setStorageStartEnd(Date storageStartEnd) {
+	public void setStorageStartEnd(String storageStartEnd) {
 		this.storageStartEnd = storageStartEnd;
 	}
 	public int getStorageBoxesNo() {

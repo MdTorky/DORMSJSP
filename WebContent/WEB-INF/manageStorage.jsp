@@ -1,3 +1,9 @@
+
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%> 
+<%@page import="com.model.storage"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +24,23 @@
          })
         //  call header file and store it in id=header
         </script>
+        
+         <style>
+        
+        .title
+         {
+            color: gold;
+            font-family: verdana;
+            text-align: center;
+        }
+        </style>
     <title>Manage Storage</title>
 </head>
 <body>
 
 	<!-- Header Section -->
   <section id="header"></section>
-
+ <h1 class="title">Manage Personal Storage</h1>
   <div class="box">
     <form name="search">
         <input type="text" class="input" name="txt" id="myInput" onmouseout="this.value = ''; this.blur();" onkeyup="myFunction()">
@@ -41,55 +57,52 @@
             <th class="header__item"><a id="weight" class="filter__link filter__link" href="#">Boxes</a></th>
             <th class="header__item"><a id="sDate" class="filter__link filter__link" href="#">Start Date</a></th>
             <th class="header__item"><a id="eDate" class="filter__link filter__link" href="#">End Date</a></th>
+            <th class="header__item"><a id="status" class="filter__link filter__link" href="#">Status</a></th>
             <th class="header__item"><a id="action" style="font-weight: 900;">Action</a></th>
         </tr>
     </thead>
     <tbody class="table-content">
+    
+  
+ <c:forEach items="${storageList}" var="st" varStatus="loop">
+ 	
+
+    
     <tr class="table-row">
 
         <td class = "table-data">A133</td>
         <td class = "table-data">Ahmed Mohamed</td>
         <td class = "table-data">ModAhmed@gmail.com</td>
-        <td class = "table-data">3 pc</td>
-        <td class = "table-data">3/1/2023</td>
-        <td class = "table-data">3/2/2023</td>
+        <td class = "table-data">${st.storageBoxesNo}</td>
+        <td class = "table-data">${st.storageStartDate}</td>
+        <td class = "table-data">${st.storageStartEnd}</td>
+        <c:if test = "${st.storageStatus == 'Paid'}">
+        <td class = "table-data" style="color:Yellow; font-weight:bold">${st.storageStatus}</td>
+        </c:if>
+        <c:if test = "${st.storageStatus == 'Booked'}">
+        <td class = "table-data" style="color:Orange; font-weight:bold">${st.storageStatus}</td>
+        </c:if>
+         <c:if test = "${st.storageStatus == 'Approved'}">
+        <td class = "table-data" style="color:Green; font-weight:bold">${st.storageStatus}</td>
+        </c:if>
+         <c:if test = "${st.storageStatus == 'Denied'}">
+        <td class = "table-data" style="color:red; font-weight:bold">${st.storageStatus}</td>
+        </c:if>
         <td class = "table-data">
             <div class="column">
+            
+            <form action="approveStorage" method="post">
+            <input type="hidden" value="${st.storageId}" name="storageId">
                 <button class="approve">Approve</button>
+                </form>
+                <form action="denyStorage" method="post">
+                <input type="hidden" value="${st.storageId}" name="storageId">
                 <button class="deny">Deny</button>
+                </form>
             </div>
         </td>
     </tr>
-    <tr class="table-row">
-
-        <td class = "table-data">B291</td>
-        <td class = "table-data">Khaled Ali</td>
-        <td class = "table-data">H.khaled@gmail.com</td>
-        <td class = "table-data">2 pc</td>
-        <td class = "table-data">31/12/2022</td>
-        <td class = "table-data">1/2/2023</td>
-        <td class = "table-data">
-            <div class="column">
-                <button class="approve">Approve</button>
-                <button class="deny">Deny</button>
-            </div>
-        </td>
-    </tr>
-    <tr class="table-row">
-
-        <td class = "table-data">D811</td>
-        <td class = "table-data">Mohamed Ahmed</td>
-        <td class = "table-data">M-Ahmed@gmail.com</td>
-        <td class = "table-data">6 pc</td>
-        <td class = "table-data">7/4/2023</td>
-        <td class = "table-data">9/7/2023</td>
-        <td class = "table-data">
-            <div class="column">
-                <button class="approve">Approve</button>
-                <button class="deny">Deny</button>
-            </div>
-        </td>
-    </tr>
+     </c:forEach>
 </tbody>
 </table>
 
@@ -122,6 +135,7 @@
         'weight',
         'sDate',
         'eDate',
+        'status',
     ];
 
     $.each( properties, function( i, val ) {

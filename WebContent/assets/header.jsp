@@ -26,7 +26,7 @@
           <a href="myParcel">Parcels</a>
           <a href="studentProfile">Profile</a>
         </div></li></div>
-        <li><a href="home" class="effect1 effect2" data-after="Log-out"><span>Log-out</span></a></li>
+        <li><a href="home.jsp" class="effect1 effect2" data-after="Log-out"><span>Log-out</span></a></li>
         <!-- <li><a href="#contact" style="color:gold; margin-right: 30px;"><span><i class="fa-solid fa-user"></i></span></a></li> -->
       </ul>
     </nav>
