@@ -30,15 +30,17 @@ public class checkInApplicationController{
 	  java.sql.Date currentDate=new java.sql.Date(System.currentTimeMillis());	        
 
       
-      checkInApplication checkInObj = new checkInApplication();
-      ArrayList <checkInApplication> checkInList = new ArrayList<checkInApplication>();
-      checkInObj.setUserId(userId);
-      checkInObj.setCheckInApplicationDate(currentDate);
-      checkInObj.setUserCheckInDate(check_in_date);
-      checkInObj.setCheckInApplicationStatus("Waiting Approval");
-      
-      checkInList.add(checkInObj);
-      session.setAttribute("checkInList", checkInList);
+		/*
+		 * checkInApplication checkInObj = new checkInApplication(); ArrayList
+		 * <checkInApplication> checkInList = new ArrayList<checkInApplication>();
+		 * checkInObj.setUserId(userId);
+		 * checkInObj.setCheckInApplicationDate(currentDate);
+		 * checkInObj.setUserCheckInDate(check_in_date);
+		 * checkInObj.setCheckInApplicationStatus("Waiting Approval");
+		 * 
+		 * checkInList.add(checkInObj); session.setAttribute("checkInList",
+		 * checkInList);
+		 */
       
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");

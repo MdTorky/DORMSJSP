@@ -3,11 +3,11 @@
 
 <!-- If user is not logged in, do not allow entry to home page -->
 
-<%-- <%
-    if (session.getAttribute("name") == null){
+<%
+    if (session.getAttribute("email") == null){
         response.sendRedirect("login");
     }
-%> --%>
+%> 
 
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,12 @@
     <link rel="shortcut icon" href="/img/favicon.png" />
     <link rel="stylesheet" href="styles/style2.css" />
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+      $(function () {
+        $("#header").load("assets/SAM_header.jsp");
+      });
+      //  call header file and store it in id=header
+    </script>
 
     <style>
       h1,
@@ -105,16 +111,8 @@
   </head>
 
   <body>
-    <a href="home.jsp"
-      ><img
-        src="img/logo2.png"
-        style="
-          width: 300px;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-        "
-    /></a>
+    <div id="header"></div>
+
 
     <div id="main_container">
       <h1>Welcome Manager</h1>
@@ -241,5 +239,6 @@
         </div>
       </form>
     </div>
+    
   </body>
 </html>

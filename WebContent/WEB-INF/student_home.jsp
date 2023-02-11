@@ -3,11 +3,11 @@
 
 <!-- If user is not logged in, do not allow entry to home page -->
 
-<%-- <%
-    if (session.getAttribute("name") == null){
+<%
+    if (session.getAttribute("email") == null){
         response.sendRedirect("login");
     }
-%> --%>
+%> 
 
 <!DOCTYPE html>
 <html>
@@ -109,6 +109,8 @@
 
 <body>
 
+  <input type = "hidden" id="status" value = "<%= request.getAttribute("status") %>">
+
     <a href="home.jsp"><img src="img/logo2.png"
             style="width:300px; display: block; margin-left: auto; margin-right:auto"></a>
 
@@ -157,6 +159,7 @@
             </div>
         </form>
     </div>
+    
 
 </body>
 

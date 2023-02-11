@@ -1,8 +1,12 @@
 package com.controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -118,6 +122,12 @@ public class mainController {
 	@RequestMapping("/addParcel")
 	public ModelAndView addParcel() {
 		ModelAndView model = new ModelAndView("addParcel");
+		return model;
+	}
+	
+	@RequestMapping("/roomInspect")
+	public ModelAndView roomInspect() {
+		ModelAndView model = new ModelAndView("inspectRoom");
 		return model;
 	}
 
@@ -237,5 +247,7 @@ public class mainController {
 
 		return "Row Affected: " + rowAffected;
 	}
+	
+
 
 }

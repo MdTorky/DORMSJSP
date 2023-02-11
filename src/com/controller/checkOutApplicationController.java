@@ -21,10 +21,7 @@ public class checkOutApplicationController {
 	public String checkOut(@RequestParam ("check_out_date") Date checkOutDate, @RequestParam ("check_out_time") String checkOutTime, HttpServletRequest request) {
 		
 	    HttpSession session = request.getSession();
-	    Integer userId = (Integer) session.getAttribute("userId");    
-	    // user _user = new user();
-	    // _user.setUserEmail(email);
-	    // session.setAttribute("user", _user);
+	    Integer userId = (Integer) session.getAttribute("userId");
 	    
 	    java.sql.Date currentDate=new java.sql.Date(System.currentTimeMillis());	        
 	    
@@ -44,6 +41,7 @@ public class checkOutApplicationController {
 	      pstmt.setInt(5, userId);
 	      
 	      pstmt.executeUpdate();
+		  session.setAttribute("checkOutUserId", userId);
 	      
 	  }
 	    catch (SQLException ex) {
