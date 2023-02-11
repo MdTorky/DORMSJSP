@@ -117,6 +117,10 @@
 </head>
 
 <body>
+
+<input type = "hidden" id="status" value="<%= request.getAttribute("status") %>">
+
+
     <div id="header"></div>
 
 
@@ -128,7 +132,7 @@
     <div id="main_container">
         <h1>Registration</h1>
 
-        <form action="userRegister" action="post">
+        <form action="userRegister" method="post">
             <div id="top_side">
 
                 <div id="first_name">
@@ -166,6 +170,9 @@
         </form>
 
     </div>
+    
+    
+    
 
 </body>
 

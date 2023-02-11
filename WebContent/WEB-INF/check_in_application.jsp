@@ -127,7 +127,7 @@
 
     <div id="main_container">
         <h1>Check in Application</h1>
-        <form action="checkInApp" action = "post">
+        <form action="checkInApp" method = "post">
         <div id="top_side">
 
             <div id="first_name">

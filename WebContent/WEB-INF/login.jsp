@@ -123,12 +123,13 @@
     /></a>
 
     <div id="main_container">
+    <form action = "loginController" method = "post">
       <h1>Login</h1>
 
       <div id="login">
         <div id="email">
           <h3>Email</h3>
-          <input type="email" class="input_field" />
+          <input type="email" class="input_field" name = "email"/>
         </div>
 
         <div id="password">
@@ -136,28 +137,16 @@
           <input type="password" class="input_field" />
         </div>
       </div>
-      <form>
-        <div id="button">
-          <button
-            type="submit"
-            formaction="studentHome"
-            id="sign_in_button"
-          >
-            Student Sign In
-          </button>
-        </div>
-
-        <br /><br />
 
         <div id="button">
           <button
             type="submit"
-            formaction="managerHome"
             id="sign_in_button"
           >
-            Manager Sign In
+            Sign In
           </button>
         </div>
+        
       </form>
     </div>
   </body>
