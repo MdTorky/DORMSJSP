@@ -3,45 +3,87 @@ package com.controller;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.model.storage;
 
 import databaseConnection.DbConnect;
 
-/**
- * storageController
- */
-
-@RequestMapping("/storage")
+@Controller
 public class storageController {
 
     @RequestMapping("/addStorage")
-    public void addStorage(HttpServletRequest request) {
-        String storageStartDate = request.getParameter("startDate");
-        String storageEndDate = request.getParameter("endDate");
-        int storageBoxesNo = Integer.parseInt(request.getParameter("box"));
+    public String addStorage(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate,
+            @RequestParam("box") int box) {
+        int rw = 0;
 
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DbConnect.openConnection();
+            System.out.println("Connection successfully opened : " + conn.getMetaData());
 
-            String sql = "Insert Into storage (storageStartDate, storageEndDate, storageBoxexNo, storageStatus) Values (?,?,?,?)";
+            String sql = "INSERT INTO storage (storageStartDate, storageEndDate, storageBoxesNo, storageStatus) VALUES (?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            storage sg = new storage();
-            ps.setString(1, storageStartDate);
-            ps.setString(2, storageEndDate);
-            ps.setInt(3, storageBoxesNo);
+            ps.setString(1, startDate);
+            ps.setString(2, endDate);
+            ps.setInt(3, box);
             ps.setString(4, "Booked");
 
-            int rowAffected = ps.executeUpdate();
+            rw = ps.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        return "payment";
     }
+
+     @RequestMapping("/getStorage")
+     public String getStorage(Model model) {
+    	 ArrayList<storage> iList= new ArrayList<>();
+     
+    	 try {
+             Class.forName("com.mysql.cj.jdbc.Driver");
+             Connection conn = DbConnect.openConnection();
+             System.out.println("Connection successfully opened : " + conn.getMetaData());
+             
+             String sql = "Select * From storage";
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery();
+             
+             
+             
+             
+             while(rs.next()) {
+            	 storage st = new storage();
+            	 st.setStorageStartDate(rs.getString("storageStartDate"));
+            	 st.setStorageStartEnd(rs.getString("storageEndDate"));
+            	 st.setStorageBoxesNo(rs.getInt("storageBoxesNo"));
+            	 st.setStorageStatus(rs.getString("storageStatus"));
+            	 iList.add(st);
+            	
+             }
+             
+             model.addAttribute("storageList", iList);
+     } catch (SQLException e) {
+         e.printStackTrace();
+     } catch (ClassNotFoundException e) {
+         e.printStackTrace();
+     }
+     
+    	 return "manageStorage";
+     }
 }

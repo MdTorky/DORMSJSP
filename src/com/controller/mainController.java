@@ -1,11 +1,17 @@
 package com.controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+import databaseConnection.DbConnect;
 
+@Controller
 
 public class mainController {
 
@@ -84,6 +90,12 @@ public class mainController {
 		return model;
 	}
 
+	@RequestMapping("/studentSuccessfullPage")
+	public ModelAndView studentSuccessfullPage() {
+		ModelAndView model = new ModelAndView("studentSuccessfullPage");
+		return model;
+	}
+
 	// Manager Pages
 	@RequestMapping("/managerCheckInApplications")
 	public ModelAndView managerCheckInApplications() {
@@ -137,6 +149,98 @@ public class mainController {
 	public ModelAndView managerHome() {
 		ModelAndView model = new ModelAndView("manager_home");
 		return model;
+	}
+	
+	
+	@RequestMapping("/payment")
+	public ModelAndView payment() {
+		ModelAndView model = new ModelAndView("payment");
+		return model;
+	}
+	
+	
+	
+	
+	@RequestMapping("transaction")
+	public String transaction(@RequestParam("payment_for") String payment_for) {
+		int rowAffected = 0;
+		
+		if(payment_for.equals("Rent")) {
+			try {
+				Connection conn = DbConnect.openConnection();
+				
+				String sql = "Update checkinapplication Set checkInApplicationStatus = ? Where id= ?";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				
+				ps.setString(1, "Paid");
+				ps.setInt(2, 2);
+				
+				rowAffected = ps.executeUpdate();
+				
+			}catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			
+			return "studentSuccessfullPage";
+		}
+		
+		else if(payment_for.equals("Parcels")) {
+			try {
+				Connection conn = DbConnect.openConnection();
+				
+				String sql = "Update parcel Set parcelHoldingFees = ? Where id= ?";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setInt(1, 0);
+				ps.setInt(2, 2);
+				
+				rowAffected = ps.executeUpdate();
+				
+			}catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			
+			return "studentSuccessfullPage";
+			
+		}
+		
+		else if(payment_for.equals("Personal Storage")) {
+			try {
+				Connection conn = DbConnect.openConnection();
+				
+				String sql = "Update storage Set storageStatus = ? Where storageId= ?";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setString(1, "Paid");
+				ps.setInt(2, 2);
+				
+				rowAffected = ps.executeUpdate();
+				
+			}catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			
+			return "studentSuccessfullPage";
+			
+		}
+		else if(payment_for.equals("Facilities")) {
+			try {
+				Connection conn = DbConnect.openConnection();
+				
+				String sql = "Update facilityapplication Set facilityApplicationStatus = ? Where id= ?";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setString(1, "Paid");
+				ps.setInt(2, 2);
+				
+				rowAffected = ps.executeUpdate();
+				
+			}catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			
+			return "studentSuccessfullPage";
+			
+		}
+		
+		return "Row Affected: " + rowAffected;
 	}
 
 }

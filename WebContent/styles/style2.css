@@ -317,7 +317,7 @@ table{
     border-radius: 6px;
     padding: 30px;
     /* margin: 0 15px; */
-    margin-top: 90px;
+    /* margin-top: 20px; */
     /* background-color: red; */
 
 }
@@ -339,7 +339,7 @@ table{
 }
 .container1 .forma{
     position: relative;
-    margin-top: 16px;
+    margin-top: 6px;
     min-height: 490px;
     overflow: hidden;
 }

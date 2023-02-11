@@ -16,6 +16,16 @@
             $('#header').load('assets/header.jsp');
          })
         </script>
+        
+        <style>
+        
+        .title
+         {
+            color: gold;
+            font-family: verdana;
+            text-align: center;
+        }
+        </style>
     <title>Request Personal Storage</title>
 </head>
 <body>
@@ -23,11 +33,11 @@
 	<!-- Header Section -->
   <section id="header"></section>
 
-
+  <h1 class="title">Request Personal Storage</h1>
 
         <section id="form1">
             <div class="container1">
-              <form method="POST" class="forma" action= "storage/addStorage">
+              <form method="post" class="forma" action= "addStorage">
                     <div class="form first">
                       <div class="details personal">
                         <h1 class="booktitle">Personal Details</h1>

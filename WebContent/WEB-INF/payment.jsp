@@ -132,11 +132,15 @@
     <div id="main_container">
         <h1>Payment</h1>
 
+
+<form action="transaction" method="get">
         <fieldset style="display:flex; justify-content: center; border:0;">
             <input type="radio" id="rent" name="payment_for" value="Rent">
             <label for="Rent">Rent</label>
             <input type="radio" id="parcels" name="payment_for" value="Parcels">
             <label for="Parcels">Parcels</label>
+            <input type="radio" id="storage" name="payment_for" value="Personal Storage">
+            <label for="Personal Storage">Personal Storage</label>
             <input type="radio" id="facilities" name="payment_for" value="Facilities">
             <label for="Facilities">Facilities</label>
         </fieldset>
@@ -195,8 +199,9 @@
         <div id="button">
             <button id="submit">Pay</button>
         </div>
-
+ </form>
     </div>
+   
 
 </body>
 
