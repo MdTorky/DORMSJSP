@@ -28,13 +28,7 @@ public class userController {
 
     HttpSession session = request.getSession();
 	String userFullName = first_name + " " + last_name;
-	user userObj = new user();
-    ArrayList<user> userList = new ArrayList<user>();
-    
-    userObj.setUserEmail(email);
-    userObj.setUserFullName(userFullName);
-    userList.add(userObj);
-    session.setAttribute("userList", userList);
+
     
 	  
 	  try {

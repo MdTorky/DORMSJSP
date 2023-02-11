@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.model.user;
+
 import databaseConnection.DbConnect;
 
 @Controller
@@ -24,13 +26,15 @@ public class loginController {
 		ResultSet rs = null;
 		int userId = 0;
 		String userType = "";
+		String userFullName = "";
+		String userPassportNo = "";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DbConnect.openConnection();
 			System.out.println("Connection successfully opened : " + conn.getMetaData());
 
-			String sql = "SELECT userId, userType FROM user WHERE userEmail = ?";
+			String sql = "SELECT * FROM user WHERE userEmail = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, email);
@@ -40,15 +44,24 @@ public class loginController {
 			if (rs.next()) {
 				userId = rs.getInt("userId");
 				userType = rs.getString("userType");
+				userFullName = rs.getString("userFullName");
+				userPassportNo = rs.getString("userPassportNo");
 			} else {
 				System.out.println("User not found");
 			}
 
 			session.setAttribute("userId", userId);
 			session.setAttribute("userType", userType);
+			
+			user userObj = new user();
+		    
+		    userObj.setUserEmail(email);
+		    userObj.setUserFullName(userFullName);
+		    session.setAttribute("userObj", userObj);
 
 			System.out.println("User ID: " + userId);
 			System.out.println("User Type: " + userType);
+			
 
 			if (userType.equals("Manager")) {
 				return "manager_home";
