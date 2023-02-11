@@ -103,11 +103,7 @@ public class mainController {
 	// Manager Pages
 	
 
-	@RequestMapping("/managerCheckOutApplications")
-	public ModelAndView managerCheckOutApplications() {
-		ModelAndView model = new ModelAndView("managerCheckOutApplications");
-		return model;
-	}
+	
 
 	@RequestMapping("/facilityApplications")
 	public ModelAndView facilityApplications() {
@@ -139,12 +135,6 @@ public class mainController {
 		return model;
 	}
 
-//	@RequestMapping("/accommodationReport")
-//	public ModelAndView accommodationReport() {
-//		System.out.print("this is report from main controller");
-//		ModelAndView model = new ModelAndView("accommodationReport");
-//		return model;
-//	}
 
 	@RequestMapping("/managerProfile")
 	public ModelAndView managerProfile() {

@@ -3,6 +3,7 @@ package com.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import databaseConnection.DbConnect;
 
@@ -52,6 +53,18 @@ public class checkOutApplicationController {
 	    }
 	    return "student_home";
 		
+	}
+
+	@RequestMapping("/managerCheckOutApplications")
+	public ModelAndView managerCheckOutApplications() {
+		Connection conn = DbConnect.openConnection();
+		ModelAndView model = new ModelAndView("managerCheckOutApplications");
+		
+		String sql = "SELECT * from checkoutapplication";
+		ResultSet resultSet;
+
+		return model;
+	
 	}
 
     
