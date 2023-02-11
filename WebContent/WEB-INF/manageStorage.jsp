@@ -76,7 +76,12 @@
         <td class = "table-data">${st.storageBoxesNo}</td>
         <td class = "table-data">${st.storageStartDate}</td>
         <td class = "table-data">${st.storageStartEnd}</td>
-        <td class = "table-data">${st.storageStatus}</td>
+        <c:if test = "${st.storageStatus == 'Paid'}">
+        <td class = "table-data" style="color:Green; font-weight:bold">${st.storageStatus}</td>
+        </c:if>
+        <c:if test = "${st.storageStatus == 'Booked'}">
+        <td class = "table-data" style="color:Red; font-weight:bold">${st.storageStatus}</td>
+        </c:if>
         <td class = "table-data">
             <div class="column">
                 <button class="approve">Approve</button>
@@ -117,6 +122,7 @@
         'weight',
         'sDate',
         'eDate',
+        'status',
     ];
 
     $.each( properties, function( i, val ) {
