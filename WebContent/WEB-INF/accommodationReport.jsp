@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +16,11 @@
 <link rel="shortcut icon" href="/img/favicon.png" />
 <!-- for including header files -->
 <script>
-      $(function () {
-        $("#header").load("assets/SAM_header.jsp");
-      });
-      //  call header file and store it in id=header
-    </script>
+	$(function() {
+		$("#header").load("assets/SAM_header.jsp");
+	});
+	//  call header file and store it in id=header
+</script>
 <title>Accommodation Report</title>
 <style>
 body {
@@ -203,6 +205,7 @@ hr {
 .building-full-available {
 	margin: 5%;
 	padding: 10px;
+	color: white;
 }
 
 .building-container {
@@ -231,11 +234,12 @@ hr {
 .full-available {
 	margin: 3%;
 	padding: 10px;
+	color: white;
 }
 
 table {
 	text-align: center;
-	font-size: 90%;
+	font-size: 100%;
 	font-weight: bold;
 }
 
@@ -272,6 +276,23 @@ table {
 	color: black;
 	background-color: rgb(0, 107, 0);
 }
+
+.available_box {
+  width: 80px;
+  height: 25px;
+  padding: 15px;
+  border-radius: 25px;
+  background-color: rgb(0, 107, 0);
+  text-align: center;
+}
+.full_box {
+  width: 80px;
+  height: 25px;
+  padding: 15px;
+  border-radius: 25px;
+  background-color: rgb(168, 35, 35);
+  text-align: center;
+}
 /* width */
 ::-webkit-scrollbar {
 	width: 4px;
@@ -294,34 +315,7 @@ table {
 	<!-- Header Section -->
 	<section id="header"></section>
 	<div class="body-container">
-		<!-- <div class="navigation-bar-container">
-      <div class="navigation-bar-logo">
-        <img class="logo-picture" src="/img/logo2.png" alt="logo Picture" />
-      </div>
-      <div class="navigation-bar-link">
-        <div class="dropdown">
-          <button class="dropbtn">Manage</button>
-          <div class="dropdown-content">
-            <a href="#">Accommodation Applications</a>
-            <a href="#">Check Out Applications</a>
-            <a href="#">Facilities</a>
-            <a href="#">Parcels</a>
-            <a href="#">Storage</a>
-            <a href="#">Complaints</a>
-          </div>
-        </div>
-      </div>
-      <div class="navigation-bar-link">
-        <div class="dropdown">
-          <button class="dropbtn">View</button>
-          <div class="dropdown-content">
-            <a href="#">Accommodation Report</a>
-            <a href="#">Profile</a>
-          </div>
-        </div>
-      </div>
-      <div class="navigation-bar-link"><a href="">Logout</a></div>
-    </div> -->
+
 
 		<hr />
 		<div class="page-name-container">Accommodation Report</div>
@@ -329,15 +323,15 @@ table {
 		<div class="building-summary-container">
 			<div class="all-building-summary">
 				<div class="all-building-summary-header">
-					300 <br /> Total Rooms <br />
+					${totalRooms} <br /> Total Rooms<br />
 				</div>
 				<div class="full-available-room-container">
 					<div class="full-available">
-						160<br />Full
+						${totalFull}<br />Full
 					</div>
 					<br />
 					<div class="full-available">
-						140<br />Available
+						${totalAvailable}<br />Available
 					</div>
 				</div>
 			</div>
@@ -346,11 +340,11 @@ table {
 					<div class="one-building-summary-header">ALPHA</div>
 					<div class="building-full-available-container">
 						<div class="building-full-available">
-							30<br />Full
+							${alphaFull}<br />Full
 						</div>
 						<br />
 						<div class="building-full-available">
-							70<br />Available
+							${alphaAvailable}<br />Available
 						</div>
 					</div>
 				</div>
@@ -358,11 +352,11 @@ table {
 					<div class="one-building-summary-header">BETA</div>
 					<div class="building-full-available-container">
 						<div class="building-full-available">
-							70<br />Full
+							${betaFull}<br />Full
 						</div>
 						<br />
 						<div class="building-full-available">
-							30<br />Available
+							${betaAvailable}<br />Available
 						</div>
 					</div>
 				</div>
@@ -370,11 +364,11 @@ table {
 					<div class="one-building-summary-header">DELTA</div>
 					<div class="building-full-available-container">
 						<div class="building-full-available">
-							60<br />Full
+							${deltaFull}<br />Full
 						</div>
 						<br />
 						<div class="building-full-available">
-							40<br />Available
+							${deltaAvailable}<br />Available
 						</div>
 					</div>
 				</div>
@@ -383,6 +377,7 @@ table {
 		<hr class="body-hr" />
 		<div class="building-container">
 			<div class="building-rooms-name">ALPHA</div>
+
 			<div class="building-rooms-status">
 				<table class="table">
 					<tr class="table_header">
@@ -392,126 +387,27 @@ table {
 						<td colspan="2">LEVEL 4</td>
 						<td colspan="2">LEVEL 5</td>
 					</tr>
-					<tr>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-					</tr>
-					<tr>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-					</tr>
-					<tr>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-					</tr>
-					<tr>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-					</tr>
-					<tr>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-					</tr>
-					<tr>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-					</tr>
-					<tr>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-					</tr>
-					<tr>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-					</tr>
-					<tr>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-					</tr>
-					<tr>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_available">Available</td>
-						<td class="table_row_full">Full</td>
-					</tr>
+
+					<c:set var="counter" value="0" />
+
+					<c:forEach var="outrCounter" begin="0" end="9" step="2">
+						<c:set var="counter" value="${outrCounter}" />
+						<tr>
+							<c:if
+								test="${rooms.get(counter).roomBlockName.equalsIgnoreCase('alpha') && (counter < 50) }">
+								<c:forEach var="innerCounter" begin="1" end="5" step="1">
+									<td class="${rooms.get(counter).roomStatus.equalsIgnoreCase("empty") ? "table_row_available": "table_row_full"}">Room
+										${rooms.get(counter).roomNo}</td>
+									<td class="${rooms.get(counter+1).roomStatus.equalsIgnoreCase("empty") ? "table_row_available": "table_row_full"}">Room
+										${rooms.get(counter+1).roomNo}</td>
+									<c:set var="counter" value="${counter+10}" />
+								</c:forEach>
+							</c:if>
+						</tr>
+					</c:forEach>
+
+
+
 				</table>
 			</div>
 		</div>
@@ -528,126 +424,25 @@ table {
 							<td colspan="2">LEVEL 4</td>
 							<td colspan="2">LEVEL 5</td>
 						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
+						<c:set var="counter" value="50" />
+
+						<c:forEach var="outrCounter" begin="50" end="59" step="2">
+							<c:set var="counter" value="${outrCounter}" />
+							<tr>
+								<c:if
+									test="${rooms.get(counter).roomBlockName.equalsIgnoreCase('beta') && (counter < 100) }">
+									<c:forEach var="innerCounter" begin="1" end="5" step="1">
+										<td class="${rooms.get(counter).roomStatus.equalsIgnoreCase("empty") ? "table_row_available": "table_row_full"}">Room
+											${rooms.get(counter).roomNo}</td>
+										<td
+											class="${rooms.get(counter+1).roomStatus.equalsIgnoreCase("empty") ? "table_row_available": "table_row_full"}">Room
+											${rooms.get(counter+1).roomNo}</td>
+										<c:set var="counter" value="${counter+10}" />
+									</c:forEach>
+								</c:if>
+							</tr>
+						</c:forEach>
+
 					</table>
 				</div>
 			</div>
@@ -665,130 +460,32 @@ table {
 							<td colspan="2">LEVEL 4</td>
 							<td colspan="2">LEVEL 5</td>
 						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
-						<tr>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_available">Available</td>
-							<td class="table_row_full">Full</td>
-						</tr>
+						<c:set var="counter" value="100" />
+
+						<c:forEach var="outrCounter" begin="100" end="109" step="2">
+							<c:set var="counter" value="${outrCounter}" />
+							<tr>
+								<c:if
+									test="${rooms.get(counter).roomBlockName.equalsIgnoreCase('delta') && (counter < 150) }">
+									<c:forEach var="innerCounter" begin="1" end="5" step="1">
+										<td class="${rooms.get(counter).roomStatus.equalsIgnoreCase("empty") ? "table_row_available": "table_row_full"}">Room
+											${rooms.get(counter).roomNo}</td>
+										<td
+											class="${rooms.get(counter+1).roomStatus.equalsIgnoreCase("empty") ? "table_row_available": "table_row_full"}">Room
+											${rooms.get(counter+1).roomNo}</td>
+										<c:set var="counter" value="${counter+10}" />
+									</c:forEach>
+								</c:if>
+							</tr>
+						</c:forEach>
+
 					</table>
 				</div>
 			</div>
 		</div>
+		<hr class="body-hr" />
+		<h3 class="available_box">Available</h3>
+		<h3 class="full_box">Full</h3>
 	</div>
 </body>
 </html>

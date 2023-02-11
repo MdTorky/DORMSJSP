@@ -121,11 +121,12 @@ public class mainController {
 		return model;
 	}
 
-	@RequestMapping("/accommodationReport")
-	public ModelAndView accommodationReport() {
-		ModelAndView model = new ModelAndView("accommodationReport");
-		return model;
-	}
+//	@RequestMapping("/accommodationReport")
+//	public ModelAndView accommodationReport() {
+//		System.out.print("this is report from main controller");
+//		ModelAndView model = new ModelAndView("accommodationReport");
+//		return model;
+//	}
 
 	@RequestMapping("/managerProfile")
 	public ModelAndView managerProfile() {
