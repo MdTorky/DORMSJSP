@@ -64,15 +64,21 @@
     <tbody class="table-content">
     
   
- <c:forEach items="${storageList}" var="st" varStatus="loop">
+ <c:forEach items="${storageList}" var="st">
+ <c:forEach items="${userList}" var="ur"> 
+
+
+<c:if test = "${st.userId eq ur.userId}">
+
  	
 
+		 
     
     <tr class="table-row">
 
-        <td class = "table-data">A133</td>
-        <td class = "table-data">Ahmed Mohamed</td>
-        <td class = "table-data">ModAhmed@gmail.com</td>
+        <td class = "table-data">${ur.userRoomNo}</td>
+        <td class = "table-data">${ur.userFullName}</td>
+        <td class = "table-data">${ur.userEmail}</td>
         <td class = "table-data">${st.storageBoxesNo}</td>
         <td class = "table-data">${st.storageStartDate}</td>
         <td class = "table-data">${st.storageStartEnd}</td>
@@ -102,7 +108,9 @@
             </div>
         </td>
     </tr>
-     </c:forEach>
+   </c:if>
+    </c:forEach>
+ </c:forEach> 
 </tbody>
 </table>
 

@@ -1,5 +1,9 @@
 <!-- Nafis -->
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%> 
+<%@page import="com.model.storage"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -161,6 +165,20 @@
   transform: rotate(45deg);
 }
 
+.approve{
+
+color: white;
+background: green;
+padding: 5px;
+border-radius: 20px;
+border: none;
+font-size: 20px;
+cursor: pointer;
+transition: 0.7s;
+}
+.approve:hover{
+    transform:scale(1.2);
+}
       
     </style>
   </head>
@@ -173,63 +191,38 @@
           <td>Mobile No</td>
           <td>Name</td>
           <td>Room No</td>
+          <td>Status</td>
           <td>Complaint</td>
-          <td>Solved</td>
+          <td>Action</td>
         </tr>
+        
+         <c:forEach items="${complaintList}" var="cl">
+ <c:forEach items="${userList}" var="ur">
+ 
+ <c:if test = "${cl.userId eq ur.userId}">
+  <c:choose> 
+   <c:when test = "${cl.complaintStatus == 'Waiting'}">
         <tr>
-          <td class="table_row">12/12/2022</td>
-          <td class="table_row">01716160617</td>
-          <td class="table_row">Nafis Ahmed</td>
-          <td class="table_row">Q3957304</td>
-          <td class="table_row">Fan not working</td>
+          <td class="table_row">${cl.complaintDate}</td>
+          <td class="table_row">${ur.userPhoneNo}</td>
+          <td class="table_row">${ur.userFullName}</td>
+          <td class="table_row">${cl.complainerRoomNo}</td>
+        <td class = "table-data" style="color:red; font-weight:bold">${cl.complaintStatus}</td>
+          <td class="table_row">${cl.complaintDescription}</td>
           <td class="table_row">
-            <label class="container">
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
+             <form action="solveComplaint" method="post">
+            <input type="hidden" value="${cl.userId}" name="userId">
+                <button class="approve">Solve</button>
+                </form>
           </td>
         </tr>
-        <tr>
-            <td class="table_row">14/12/2022</td>
-            <td class="table_row">01415156908</td>
-            <td class="table_row">Ayan Hossain</td>
-            <td class="table_row">Q4557306</td>
-            <td class="table_row">Broken Sink</td>
-            <td class="table_row">
-                <label class="container">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                  </label>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="table_row">19/12/2022</td>
-            <td class="table_row">01535766313</td>
-            <td class="table_row">Hassan Mustafa</td>
-            <td class="table_row">Q5557309</td>
-            <td class="table_row">Bed Worms</td>
-            <td class="table_row">
-                <label class="container">
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                  </label>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="table_row">21/12/2022</td>
-            <td class="table_row">01771575242</td>
-            <td class="table_row">Bida Demha</td>
-            <td class="table_row">Q7957404</td>
-            <td class="table_row">Broken chair</td>
-            <td class="table_row">
-                <label class="container">
-                    <input type="checkbox" >
-                    <span class="checkmark"></span>
-                  </label>
-            </td>
-          </tr>
+        </c:when>  
+        <c:otherwise>
+          </c:otherwise>
+          </c:choose>
+        </c:if>
+        </c:forEach>
+        </c:forEach>
         
        
       

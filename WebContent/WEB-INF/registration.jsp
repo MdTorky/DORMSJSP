@@ -137,12 +137,12 @@
 
                 <div id="first_name">
                     <h3>First Name</h3>
-                    <input type="text" class="input_field" name="first_name">
+                    <input type="text" class="input_field" name="first_name" required>
                 </div>
 
                 <div id="last_name">
                     <h3>Last Name</h3>
-                    <input type="text" class="input_field" name="last_name">
+                    <input type="text" class="input_field" name="last_name" required>
                 </div>
 
             </div>
@@ -151,12 +151,12 @@
 
                 <div id="email">
                     <h3>Email</h3>
-                    <input type="email" class="input_field" name="email">
+                    <input type="email" class="input_field" name="email" required>
                 </div>
 
                 <div id="password">
                     <h3>Password</h3>
-                    <input type="password" class="input_field" name="password">
+                    <input type="password" class="input_field" name="password" required>
                 </div>
 
             </div>

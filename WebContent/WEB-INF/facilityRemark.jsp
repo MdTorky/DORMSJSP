@@ -111,13 +111,13 @@
 
 
         
-<form action="denyStorageRemark" method="post">
+<form action="denyFacilityRemark" method="post">
 
   			<div id="tarea">
-                <h3>Storage Remark</h3>
+                <h3>Facility Remark</h3>
                 
                 
-                <input type="hidden" value="${st.storageId}" name="storageId">
+                <input type="hidden" value="${fA.userId}" name="userId">
                 <textarea cols="60" rows="20" placeholder="Write your Remark Here" name="remark"></textarea>
             </div>
             
