@@ -1,3 +1,8 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%> 
+<%@page import="com.model.parcel"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +22,17 @@
          })
         //  call header file and store it in id=header
         </script>
+        <style>
+        .title
+         {
+            color: gold;
+            font-family: verdana;
+            text-align: center;
+        }
+        .gold{
+        color:gold;
+        font-weight: bold}
+        </style>
     <title>My Parcels</title>
 	
 </head>
@@ -25,7 +41,7 @@
 	</section>
 	<!-- Header Section -->
   
-
+ <h1 class="title">My Parcels</h1>
 
   <!-- My Parcels Table -->
   <section id="my-parcels-table">
@@ -33,30 +49,20 @@
 <table class="table">
 	<thead class="table-header">
 		<tr>
+			<th class="header__item"><a id="parcelID" class="filter__link filter__link" href="#">Parcel ID</a></th>
 			<th class="header__item"><a id="arrival" class="filter__link" href="#">Arrival Date</a></th>
-			<th class="header__item"><a id="arrived" class="filter__link filter__link" href="#">Arrived</a></th>
 			<th class="header__item"><a id="fees" class="filter__link filter__link" href="#">Fees</a></th>
 		</tr>
 	</thead>
 	<tbody class="table-content">
+<c:forEach items="${userParcelList}" var="upl">
+	
 	<tr class="table-row">
-
-		<td class = "table-data">12/12/2022</td>
-		<td class = "table-data">YES</td>
-		<td class = "table-data">RM2</td>
+		<td class = "table-data">${upl.parcelId}</td>
+		<td class = "table-data">${upl.parcelArrivalDate}</td>
+		<td class = "table-data">RM<span class="gold">${upl.parcelHoldingFees }</span></td>
 	</tr>
-	<tr class="table-row">
-
-		<td class = "table-data">13/2/2022</td>
-		<td class = "table-data">YES</td>
-		<td class = "table-data">RM1</td>
-	</tr>
-	<tr class="table-row">
-
-		<td class = "table-data">1/1/2023</td>
-		<td class = "table-data">NO</td>
-		<td class = "table-data"></td>
-	</tr>
+</c:forEach>
 </tbody>
 </table>
 </div>
@@ -67,7 +73,7 @@
 <script>
    var properties = [
 	        'arrival',
-	        'arrived',
+	        'parcelID',
 	        'fees',
         ];
 

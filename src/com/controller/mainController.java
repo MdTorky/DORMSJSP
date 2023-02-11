@@ -168,20 +168,22 @@ public class mainController {
 	}
 
 	@RequestMapping("transaction")
-	public String transaction(@RequestParam("payment_for") String payment_for) {
-		int rowAffected = 0;
+	public String transaction(@RequestParam("payment_for") String payment_for, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		Integer userId = (Integer) session.getAttribute("userId");
 
 		if (payment_for.equals("Rent")) {
 			try {
 				Connection conn = DbConnect.openConnection();
 
-				String sql = "Update checkinapplication Set checkInApplicationStatus = ? Where id= ?";
+				String sql = "Update checkinapplication Set checkInApplicationStatus = ? Where userId= ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
 
 				ps.setString(1, "Paid");
-				ps.setInt(2, 2);
+				ps.setInt(2, userId);
 
-				rowAffected = ps.executeUpdate();
+				ps.executeUpdate();
 
 			} catch (SQLException ex) {
 				ex.printStackTrace();
@@ -194,12 +196,12 @@ public class mainController {
 			try {
 				Connection conn = DbConnect.openConnection();
 
-				String sql = "Update parcel Set parcelHoldingFees = ? Where id= ?";
+				String sql = "Update parcel Set parcelHoldingFees = ? Where userId= ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setInt(1, 0);
-				ps.setInt(2, 2);
+				ps.setInt(2, userId);
 
-				rowAffected = ps.executeUpdate();
+				ps.executeUpdate();
 
 			} catch (SQLException ex) {
 				ex.printStackTrace();
@@ -213,12 +215,12 @@ public class mainController {
 			try {
 				Connection conn = DbConnect.openConnection();
 
-				String sql = "Update storage Set storageStatus = ? Where storageId= ?";
+				String sql = "Update storage Set storageStatus = ? Where userId= ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setString(1, "Paid");
-				ps.setInt(2, 2);
+				ps.setInt(2, userId);
 
-				rowAffected = ps.executeUpdate();
+				ps.executeUpdate();
 
 			} catch (SQLException ex) {
 				ex.printStackTrace();
@@ -230,22 +232,22 @@ public class mainController {
 			try {
 				Connection conn = DbConnect.openConnection();
 
-				String sql = "Update facilityapplication Set facilityApplicationStatus = ? Where id= ?";
+				String sql = "Update facilityapplication Set facilityApplicationStatus = ? Where userId= ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setString(1, "Paid");
-				ps.setInt(2, 2);
+				ps.setInt(2, userId);
 
-				rowAffected = ps.executeUpdate();
+				ps.executeUpdate();
 
 			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
 
-			return "studentSuccessfullPage";	
+			return "studentSuccessfullPage";
 
 		}
 
-		return "Row Affected: " + rowAffected;
+		return "null";
 	}
 	
 
