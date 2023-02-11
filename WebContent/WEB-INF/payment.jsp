@@ -133,7 +133,7 @@
         <h1>Payment</h1>
 
 
-<form action="transaction" method="get">
+<form action="transaction" method="post">
         <fieldset style="display:flex; justify-content: center; border:0;">
             <input type="radio" id="rent" name="payment_for" value="Rent">
             <label for="Rent">Rent</label>

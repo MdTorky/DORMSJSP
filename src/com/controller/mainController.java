@@ -150,96 +150,91 @@ public class mainController {
 		ModelAndView model = new ModelAndView("manager_home");
 		return model;
 	}
-	
-	
+
 	@RequestMapping("/payment")
 	public ModelAndView payment() {
 		ModelAndView model = new ModelAndView("payment");
 		return model;
 	}
-	
-	
-	
-	
+
 	@RequestMapping("transaction")
 	public String transaction(@RequestParam("payment_for") String payment_for) {
 		int rowAffected = 0;
-		
-		if(payment_for.equals("Rent")) {
+
+		if (payment_for.equals("Rent")) {
 			try {
 				Connection conn = DbConnect.openConnection();
-				
+
 				String sql = "Update checkinapplication Set checkInApplicationStatus = ? Where id= ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
-				
+
 				ps.setString(1, "Paid");
 				ps.setInt(2, 2);
-				
+
 				rowAffected = ps.executeUpdate();
-				
-			}catch (SQLException ex) {
+
+			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
-			
+
 			return "studentSuccessfullPage";
 		}
-		
-		else if(payment_for.equals("Parcels")) {
+
+		else if (payment_for.equals("Parcels")) {
 			try {
 				Connection conn = DbConnect.openConnection();
-				
+
 				String sql = "Update parcel Set parcelHoldingFees = ? Where id= ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setInt(1, 0);
 				ps.setInt(2, 2);
-				
+
 				rowAffected = ps.executeUpdate();
-				
-			}catch (SQLException ex) {
+
+			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
-			
+
 			return "studentSuccessfullPage";
-			
+
 		}
-		
-		else if(payment_for.equals("Personal Storage")) {
+
+		else if (payment_for.equals("Personal Storage")) {
 			try {
 				Connection conn = DbConnect.openConnection();
-				
+
 				String sql = "Update storage Set storageStatus = ? Where storageId= ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setString(1, "Paid");
 				ps.setInt(2, 2);
-				
+
 				rowAffected = ps.executeUpdate();
-				
-			}catch (SQLException ex) {
+
+			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
-			
+
 			return "studentSuccessfullPage";
-			
-		}
-		else if(payment_for.equals("Facilities")) {
+
+		} else if (payment_for.equals("Facilities")) {
 			try {
 				Connection conn = DbConnect.openConnection();
-				
+
 				String sql = "Update facilityapplication Set facilityApplicationStatus = ? Where id= ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setString(1, "Paid");
 				ps.setInt(2, 2);
-				
+
 				rowAffected = ps.executeUpdate();
-				
-			}catch (SQLException ex) {
+
+			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
-			
-			return "studentSuccessfullPage";
-			
+
+			return "studentSuccessfullPage";	
+
 		}
-		
+
 		return "Row Affected: " + rowAffected;
 	}
 

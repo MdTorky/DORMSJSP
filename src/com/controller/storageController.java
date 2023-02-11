@@ -51,39 +51,36 @@ public class storageController {
         return "payment";
     }
 
-     @RequestMapping("/getStorage")
-     public String getStorage(Model model) {
-    	 ArrayList<storage> iList= new ArrayList<>();
-     
-    	 try {
-             Class.forName("com.mysql.cj.jdbc.Driver");
-             Connection conn = DbConnect.openConnection();
-             System.out.println("Connection successfully opened : " + conn.getMetaData());
-             
-             String sql = "Select * From storage";
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery();
-             
-             
-             
-             
-             while(rs.next()) {
-            	 storage st = new storage();
-            	 st.setStorageStartDate(rs.getString("storageStartDate"));
-            	 st.setStorageStartEnd(rs.getString("storageEndDate"));
-            	 st.setStorageBoxesNo(rs.getInt("storageBoxesNo"));
-            	 st.setStorageStatus(rs.getString("storageStatus"));
-            	 iList.add(st);
-            	
-             }
-             
-             model.addAttribute("storageList", iList);
-     } catch (SQLException e) {
-         e.printStackTrace();
-     } catch (ClassNotFoundException e) {
-         e.printStackTrace();
-     }
-     
-    	 return "manageStorage";
-     }
+    @RequestMapping("/getStorage")
+    public String getStorage(Model model) {
+        ArrayList<storage> iList = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DbConnect.openConnection();
+            System.out.println("Connection successfully opened : " + conn.getMetaData());
+
+            String sql = "Select * From storage";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                storage st = new storage();
+                st.setStorageStartDate(rs.getString("storageStartDate"));
+                st.setStorageStartEnd(rs.getString("storageEndDate"));
+                st.setStorageBoxesNo(rs.getInt("storageBoxesNo"));
+                st.setStorageStatus(rs.getString("storageStatus"));
+                iList.add(st);
+
+            }
+
+            model.addAttribute("storageList", iList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return "manageStorage";
+    }
 }
