@@ -97,11 +97,7 @@ public class mainController {
 	}
 
 	// Manager Pages
-	@RequestMapping("/managerCheckInApplications")
-	public ModelAndView managerCheckInApplications() {
-		ModelAndView model = new ModelAndView("managerCheckInApplications");
-		return model;
-	}
+	
 
 	@RequestMapping("/managerCheckOutApplications")
 	public ModelAndView managerCheckOutApplications() {
