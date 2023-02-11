@@ -28,6 +28,8 @@ public class loginController {
 		String userType = "";
 		String userFullName = "";
 		String userPassportNo = "";
+		String userNationality="";
+		String userPhoneNo = "";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -46,6 +48,8 @@ public class loginController {
 				userType = rs.getString("userType");
 				userFullName = rs.getString("userFullName");
 				userPassportNo = rs.getString("userPassportNo");
+				userNationality = rs.getString("userNationality");
+				userPhoneNo = rs.getString("userPhoneNo");
 			} else {
 				System.out.println("User not found");
 			}
@@ -57,6 +61,8 @@ public class loginController {
 		    
 		    userObj.setUserEmail(email);
 		    userObj.setUserFullName(userFullName);
+		    userObj.setUserNationality(userNationality);
+		    userObj.setUserPhoneNo(userPhoneNo);
 		    session.setAttribute("userObj", userObj);
 
 			System.out.println("User ID: " + userId);

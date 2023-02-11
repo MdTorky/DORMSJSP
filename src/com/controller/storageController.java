@@ -13,6 +13,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.storage;
+import com.model.user;
 
 import databaseConnection.DbConnect;
 
@@ -30,21 +32,25 @@ public class storageController {
 
     @RequestMapping("/addStorage")
     public String addStorage(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate,
-            @RequestParam("box") int box) {
+            @RequestParam("box") int box, HttpServletRequest request) {
         int rw = 0;
+        
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DbConnect.openConnection();
             System.out.println("Connection successfully opened : " + conn.getMetaData());
 
-            String sql = "INSERT INTO storage (storageStartDate, storageEndDate, storageBoxesNo, storageStatus) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO storage (userid, storageStartDate, storageEndDate, storageBoxesNo, storageStatus) VALUES (?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            ps.setString(1, startDate);
-            ps.setString(2, endDate);
-            ps.setInt(3, box);
-            ps.setString(4, "Booked");
+            ps.setInt(1, userId);
+            ps.setString(2, startDate);
+            ps.setString(3, endDate);
+            ps.setInt(4, box);
+            ps.setString(5, "Booked");
 
             rw = ps.executeUpdate();
 
@@ -57,35 +63,67 @@ public class storageController {
     }
 
     @RequestMapping("/getStorage")
-    public String getStorage(Model model) {
-        ArrayList<storage> iList = new ArrayList<>();
+    public String getStorage(Model model) throws SQLException {
+        
+    	ArrayList<storage> iList = new ArrayList<>();
+    	ArrayList<user> uList = new ArrayList<>();
+    	
+        
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DbConnect.openConnection();
             System.out.println("Connection successfully opened : " + conn.getMetaData());
 
             String sql = "Select * From storage";
+            
             PreparedStatement ps = conn.prepareStatement(sql);
+            
             ResultSet rs = ps.executeQuery();
 
+            
+            
+            
+            
             while (rs.next()) {
                 storage st = new storage();
                 st.setStorageId(rs.getInt("storageId"));
+                st.setUserId(rs.getInt("userId"));
                 st.setStorageStartDate(rs.getString("storageStartDate"));
                 st.setStorageStartEnd(rs.getString("storageEndDate"));
                 st.setStorageBoxesNo(rs.getInt("storageBoxesNo"));
                 st.setStorageStatus(rs.getString("storageStatus"));
                 iList.add(st);
+                
+                System.out.println(rs.getInt("userId"));
 
             }
-
+            
             model.addAttribute("storageList", iList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+            
+            
+            
+            
+            
+            String sql2 = "Select * From user";
+            PreparedStatement userPs = conn.prepareStatement(sql2);
+            ResultSet userRs = userPs.executeQuery();
+            
+            while (userRs.next()) {
+                user ur = new user();
+                ur.setUserId(userRs.getInt("userId"));
+                ur.setUserFullName(userRs.getString("userFullName"));
+                ur.setUserEmail(userRs.getString("userEmail"));
+                ur.setUserType(userRs.getString("userType"));
+                ur.setUserNationality(userRs.getString("userNationality"));
+                ur.setUserPhoneNo(userRs.getString("userPhoneNo"));
+                ur.setUserRoomNo(userRs.getString("userRoomNo"));
+                uList.add(ur);
+                
+                System.out.println(userRs.getInt("userId"));
+            }
+
+            
+			 model.addAttribute("userList", uList);
+      
 
         return "manageStorage";
     }

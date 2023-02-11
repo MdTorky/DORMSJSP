@@ -104,7 +104,7 @@
     font-family: inherit;
         display: flex;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 20px;
     /* margin-bottom: 0px; */
     flex-direction: column;
 }
@@ -177,6 +177,11 @@
     color: #333333;
 }
 
+.title2{
+	font-size: 15px;
+	color: gold;
+	text-align:center;
+}
 
 
   
@@ -227,6 +232,7 @@
       
       <c:forEach items="${userParcelList}" var="upl" varStatus="loop">
       
+      
         <tr class="table-row">
           <td class="table-data">${upl.userFullName}</td>
           <td class="table-data">${upl.userPhoneNo}</td>
@@ -234,7 +240,7 @@
           <td class = "table-data">
             <div class="column">
             
-            <div onclick="location.href='#divOne'">
+            <div onclick="location.href='#div${upl.userId}'">
                 <button class="add">Add</button>
                 
                 
@@ -245,17 +251,20 @@
         </tr>
         
         
+       
         
         
-        
-        
+ 
 
-        
-   <div class="containerParcel" id="divOne">
+        <c:forEach items="${userParcelList}" var="upl2" varStatus="loop">
+        	<c:if test="${upl2.userId eq upl.userId }">
+   <div class="containerParcel" id="div${upl.userId}">
      <section class="checkout-form">
       <a href="#" class="close">&times;</a>	
-      <h1 class="title">Add Parcels</h1>
+      <h1 class="title">Add Parcel To</h1>
+      <h2 class="title2">${upl.userFullName}</h2>
     <form class="addForm" method="post" action="addParcelInfo">
+        <input type="hidden" value="${upl.userId}" name="userId">
       <div class="additems">
         <label for="inp" class="inp">
           <input type="date" id="inp1" name="arrivalDate"placeholder="&nbsp;" required />
@@ -270,7 +279,7 @@
         </label>
       </div>
     	
-      <input type="hidden" value="${upl.userId}" name="userId">
+  
       <a><button class="learn-more">
           <span class="circle" aria-hidden="true">
             <span class="icon arrow"></span>
@@ -282,7 +291,8 @@
     </form>
     </section>
     </div>
-   
+    </c:if>
+   </c:forEach>
         
         </c:forEach>
         

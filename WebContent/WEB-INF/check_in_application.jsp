@@ -131,14 +131,14 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="tel"],
 					<h3>Full Name</h3>
 					<input type="text" class="input_field" name="full_name"
 						value="<jsp:getProperty property="userFullName" name="userObj"/>"
-						disabled>
+						readonly>
 				</div>
 
 				<div id="email">
 					<h3>Email</h3>
 					<input type="text" class="input_field" name="email"
 						value="<jsp:getProperty property="userEmail" name="userObj"/>"
-						disabled>
+						readonly>
 				</div>
 
 				<div id="passport_number">
