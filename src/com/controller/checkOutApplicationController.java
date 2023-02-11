@@ -20,8 +20,8 @@ public class checkOutApplicationController {
 	@RequestMapping("/checkOutApp")
 	public String checkOut(@RequestParam ("check_out_date") Date checkOutDate, @RequestParam ("check_out_time") String checkOutTime, HttpServletRequest request) {
 		
-	    HttpSession session = request.getSession();    
-	    int rowAffected = 0;
+	    HttpSession session = request.getSession();
+	    Integer userId = (Integer) session.getAttribute("userId");    
 	    // user _user = new user();
 	    // _user.setUserEmail(email);
 	    // session.setAttribute("user", _user);
@@ -34,15 +34,16 @@ public class checkOutApplicationController {
 	      System.out.println("Connection successfully opened : " + conn.getMetaData());
 
 	      
-	      String sql = "INSERT INTO checkoutapplication (checkOutApplicationDate, userCheckOutDate, userCheckOutTime, checkOutApplicationStatus) VALUES (?,?,?,?)";
+	      String sql = "INSERT INTO checkoutapplication (checkOutApplicationDate, userCheckOutDate, userCheckOutTime, checkOutApplicationStatus, userId) VALUES (?,?,?,?,?)";
 	      PreparedStatement pstmt = conn.prepareStatement(sql);
 	      
 	      pstmt.setDate(1, currentDate);
 	      pstmt.setDate(2, checkOutDate);
 	      pstmt.setString(3, checkOutTime);
 	      pstmt.setString(4, "Waiting Approval");
+	      pstmt.setInt(5, userId);
 	      
-	      rowAffected = pstmt.executeUpdate();
+	      pstmt.executeUpdate();
 	      
 	  }
 	    catch (SQLException ex) {

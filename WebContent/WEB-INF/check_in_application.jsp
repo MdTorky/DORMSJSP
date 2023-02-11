@@ -131,13 +131,13 @@
         <div id="top_side">
 
             <div id="first_name">
-                <h3>First Name</h3>
-                <input type="text" class="input_field" name = "first_name">
+                <h3>Full Name</h3>
+                <input type="text" class="input_field" name = "full_name">
             </div>
-
-            <div id="last_name">
-                <h3>Last Name</h3>
-                <input type="text" class="input_field" name = "last_name">
+            
+            <div id="email">
+                <h3>Email</h3>
+                <input type="text" class="input_field" name = "email">
             </div>
 
             <div id="passport_number">
@@ -149,10 +149,7 @@
 
         <div id="middle_side">
 
-            <div id="email">
-                <h3>Email</h3>
-                <input type="text" class="input_field" name = "email">
-            </div>
+
 
             <div id="check_in_date">
                 <h3>Check in Date</h3>
@@ -163,15 +160,17 @@
                 <h3>Phone Number</h3>
                 <input type="text" class="input_field" name = "phone_number">
             </div>
+            
+             <div id="nationality">
+                <h3>Nationality</h3>
+                <input type="text" class="input_field" name = "nationality">
+            </div>
 
         </div>
         <div id="bottom_side">
 
 
-            <div id="nationality">
-                <h3>Nationality</h3>
-                <input type="text" class="input_field" name = "nationality">
-            </div>
+
 
         </div>
 
