@@ -151,13 +151,13 @@
 
             <div id="full_name">
                 <h3>Full Name</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" required>
             </div>
 
 
             <div id="passport_number">
                 <h3>Passport Number</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" required>
             </div>
 
         </div>
@@ -167,7 +167,7 @@
 
             <div id="amount">
                 <h3>Amount (in RM)</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" required>
             </div>
 
         </div>
@@ -175,22 +175,22 @@
         <div id="bottom_side">
             <div id="card_number">
                 <h3>Card Number</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" required>
             </div>
 
             <div id="expiration_date">
                 <h3>Expiration Date</h3>
-                <input type="text" class="input_field" placeholder="mm/yy">
+                <input type="text" class="input_field" required placeholder="mm/yy">
             </div>
 
             <div id="cvc">
                 <h3>CVC</h3>
-                <input type="number" class="input_field">
+                <input type="number" class="input_field" required>
             </div>
 
             <div id="cardholder_name">
                 <h3>Cardholder name</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" required>
             </div>
 
         </div>
