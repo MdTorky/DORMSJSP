@@ -17,10 +17,10 @@ import databaseConnection.DbConnect;
 public class InspectController {
 	
 	@RequestMapping("/inspect")
-	public String inspect(@RequestParam ("bed_frame") int bed_frame, @RequestParam ("table") int table, @RequestParam ("chair") int chair, @RequestParam ("wardrobe") int wardrobe, @RequestParam ("door") int door, @RequestParam ("windows") int windows, HttpServletRequest request) {
+	public String inspect(@RequestParam ("bed_frame") int bed_frame, @RequestParam ("table") int table, @RequestParam ("chair") int chair, @RequestParam ("wardrobe") int wardrobe, @RequestParam ("door") int door, @RequestParam ("windows") int windows, @RequestParam ("checkOutApplicationId") int checkOutApplicationId, HttpServletRequest request) {
 		
-	    HttpSession session = request.getSession();
-	    Integer checkOutUserId = (Integer) session.getAttribute("checkOutUserId");    
+	    //HttpSession session = request.getSession();
+	    //Integer checkOutUserId = (Integer) session.getAttribute("checkOutUserId");    
 	    float totalAmount = bed_frame + table + chair + wardrobe + door + windows;
 	    System.out.println("TOTAL AMOUNT TO PAY FOR DAMAGES: " + totalAmount);
 	    
@@ -31,11 +31,11 @@ public class InspectController {
 	      System.out.println("Connection successfully opened : " + conn.getMetaData());
 
 	      
-	      String sql = "Update checkoutapplication Set damagesAmount = ? Where userId=?";
+	      String sql = "INSERT INTO inspectapplication (checkOutApplicationId, totalDamageAmount) VALUES (?, ?)";
 	      PreparedStatement pstmt = conn.prepareStatement(sql);
 	      
-	      pstmt.setFloat(1, totalAmount);
-	      pstmt.setInt(2, checkOutUserId);
+	      pstmt.setInt(1, checkOutApplicationId);
+		  pstmt.setFloat(2, totalAmount);
 	      
 	      pstmt.executeUpdate();
 	      

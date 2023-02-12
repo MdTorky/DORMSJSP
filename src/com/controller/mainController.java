@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -82,11 +83,7 @@ public class mainController {
 		return model;
 	}
 
-	@RequestMapping("/studentProfile")
-	public ModelAndView studentProfile() {
-		ModelAndView model = new ModelAndView("studentProfile");
-		return model;
-	}
+	
 
 	@RequestMapping("/studentHome")
 	public ModelAndView studentHome() {
@@ -101,9 +98,6 @@ public class mainController {
 	}
 
 	// Manager Pages
-	
-
-	
 
 	@RequestMapping("/facilityApplications")
 	public ModelAndView facilityApplications() {
@@ -116,10 +110,12 @@ public class mainController {
 		ModelAndView model = new ModelAndView("addParcel");
 		return model;
 	}
-	
+
 	@RequestMapping("/roomInspect")
-	public ModelAndView roomInspect() {
+	public ModelAndView roomInspect(@RequestParam("checkOutApplicationId") int checkOutApplicationId) {
+
 		ModelAndView model = new ModelAndView("inspectRoom");
+		model.addObject("checkOutApplicationId", checkOutApplicationId);
 		return model;
 	}
 
@@ -132,13 +128,6 @@ public class mainController {
 	@RequestMapping("/complaintsApplications")
 	public ModelAndView complaintsApplications() {
 		ModelAndView model = new ModelAndView("complaintsapplications");
-		return model;
-	}
-
-
-	@RequestMapping("/managerProfile")
-	public ModelAndView managerProfile() {
-		ModelAndView model = new ModelAndView("managerProfile");
 		return model;
 	}
 
@@ -236,7 +225,5 @@ public class mainController {
 
 		return "null";
 	}
-	
-
 
 }

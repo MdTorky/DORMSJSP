@@ -211,7 +211,7 @@
         <div class="profile-picture-container">
           <img
             class="profile-picture"
-            src="/img/profilepicturetemplate.jfif"
+            src="img/profilepicturetemplate.png"
             alt="Profile Picture"
           />
         </div>
@@ -223,10 +223,10 @@
             <div class="nationality-container">Phone Number</div>
           </div>
           <div class="profile-details-data">
-            <div>Hassan Mustafa</div>
-            <div>Sudanese</div>
-            <div>Hassan@gmail.com</div>
-            <div>+249999155872</div>
+            <div>${currentUser.userFullName}</div>
+            <div>${currentUser.userNationality}</div>
+            <div>${currentUser.userEmail}</div>
+            <div>${currentUser.userPhoneNo}</div>
           </div>
         </div>
       </div>

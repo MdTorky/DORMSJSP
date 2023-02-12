@@ -6,10 +6,10 @@ import java.sql.*;
 public class checkOutApplication {
 
     private int checkOutApplicationId;
-    private String userId;
+    private int userId;
     private Date checkOutApplicationDate;
     private Date userCheckOutDate;
-    private Time userCheckOutTime;
+    private String userCheckOutTime;
     private String checkOutApplicationStatus;
 
 	public int getCheckOutApplicationId() {
@@ -18,10 +18,10 @@ public class checkOutApplication {
 	public void setCheckOutApplicationId(int checkOutApplicationId) {
 		this.checkOutApplicationId = checkOutApplicationId;
 	}
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public Date getCheckOutApplicationDate() {
@@ -36,10 +36,10 @@ public class checkOutApplication {
 	public void setUserCheckOutDate(Date userCheckOutDate) {
 		this.userCheckOutDate = userCheckOutDate;
 	}
-	public Time getUserCheckOutTime() {
+	public String getUserCheckOutTime() {
 		return userCheckOutTime;
 	}
-	public void setUserCheckOutTime(Time userCheckOutTime) {
+	public void setUserCheckOutTime(String userCheckOutTime) {
 		this.userCheckOutTime = userCheckOutTime;
 	}
 	public String getCheckOutApplicationStatus() {
