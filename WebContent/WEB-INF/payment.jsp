@@ -125,6 +125,7 @@
 
 <body>
 
+	<jsp:useBean id="userObj" scope="session" class="com.model.user"></jsp:useBean>
     <div id="header"></div>
 
 
@@ -151,18 +152,20 @@
 
             <div id="full_name">
                 <h3>Full Name</h3>
-                <input type="text" class="input_field" required>
+                <input type="text" class="input_field" value="<jsp:getProperty property="userFullName" name="userObj"/>"
+						readonly required>
             </div>
 
 
             <div id="passport_number">
                 <h3>Passport Number</h3>
-                <input type="text" class="input_field" required>
+                <input type="text" class="input_field" name="passport" required value="${passport}"/>
+					
             </div>
 
         </div>
 
-        <div id="middle_side">
+<!--         <div id="middle_side">
 
 
             <div id="amount">
@@ -170,7 +173,7 @@
                 <input type="text" class="input_field" required>
             </div>
 
-        </div>
+        </div> -->
 
         <div id="bottom_side">
             <div id="card_number">
