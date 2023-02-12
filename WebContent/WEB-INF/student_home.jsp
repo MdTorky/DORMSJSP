@@ -3,11 +3,11 @@
 
 <!-- If user is not logged in, do not allow entry to home page -->
 
-<%-- <%
-    if (session.getAttribute("name") == null){
+<%
+    if (session.getAttribute("email") == null){
         response.sendRedirect("login");
     }
-%> --%>
+%> 
 
 <!DOCTYPE html>
 <html>
@@ -173,6 +173,8 @@
 </head>
 
 <body>
+
+  <input type = "hidden" id="status" value = "<%= request.getAttribute("status") %>">
 <jsp:useBean id="userObj" scope="session" class="com.model.user"></jsp:useBean>
 
     <!-- <a href="home.jsp"><img src="img/logo2.png"

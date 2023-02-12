@@ -10,10 +10,10 @@
 <link rel="stylesheet" href="styles/style2.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-        $(function () {
-            $('#header').load('assets/header.jsp');
-        })
-    </script>
+	$(function() {
+		$('#header').load('assets/header.jsp');
+	})
+</script>
 
 <style>
 h1, h2 {
@@ -110,6 +110,9 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="tel"],
 	border: 3px solid #333333;
 }
 
+input:read-only {
+  background-color: #E1D9D1;
+}
 </style>
 </head>
 
@@ -143,7 +146,7 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="tel"],
 
 				<div id="passport_number">
 					<h3>Passport Number</h3>
-					<input type="text" class="input_field" name="passport">
+					<input type="text" class="input_field" name="passport" required>
 				</div>
 
 			</div>
@@ -154,17 +157,21 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="tel"],
 
 				<div id="check_in_date">
 					<h3>Check in Date</h3>
-					<input type="date" class="input_field" name="check_in_date">
+					<input type="date" class="input_field" name="check_in_date"
+						required>
 				</div>
 
 				<div id="phone_Number">
 					<h3>Phone Number</h3>
-					<input type="text" class="input_field" name="phone_number">
+					<input type="text" class="input_field" name="phone_number"
+						pattern="(01)[0-46-9]*[0-9]{7,8}"
+						oninvalid="this.setCustomValidity('Please a valid malaysian phone number, e.g. 0115764827')"
+						oninput="this.setCustomValidity('')" required>
 				</div>
 
 				<div id="nationality">
 					<h3>Nationality</h3>
-					<input type="text" class="input_field" name="nationality">
+					<input type="text" class="input_field" name="nationality" required>
 				</div>
 
 			</div>
@@ -175,8 +182,8 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="tel"],
 			</div>
 
 			<div id="checkbox" style="color: aliceblue; margin-left: 100px;">
-				<input type="checkbox" id="terms_conditions"> I agree to the
-				terms and conditions of Dorms Hostel Sdn Bhd
+				<input type="checkbox" id="terms_conditions" required> I
+				agree to the terms and conditions of Dorms Hostel Sdn Bhd
 			</div>
 
 		</form>

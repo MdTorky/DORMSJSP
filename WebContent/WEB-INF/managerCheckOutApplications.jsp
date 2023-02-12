@@ -211,7 +211,7 @@
           <td class="table_row">1/1/2023</td>
           <td class="table_row">Waiting Inspection</td>
           <td class="table_row">
-            <a class="inspect-approve-link" href="roomInspection.jsp"
+            <a class="inspect-approve-link" href="roomInspect"
               >Inspect</a
             >
             /
@@ -225,7 +225,7 @@
           <td class="table_row">12/4/2023</td>
           <td class="table_row">Waiting Inspection</td>
           <td class="table_row">
-            <a class="inspect-approve-link" href="roomInspection.jsp"
+            <a class="inspect-approve-link" href="roomInspect"
               >Inspect</a
             >
             /
@@ -239,7 +239,7 @@
           <td class="table_row">10/5/2023</td>
           <td class="table_row">Approved</td>
           <td class="table_row">
-            <a class="inspect-approve-link" href="roomInspection.jsp">Inspect</a
+            <a class="inspect-approve-link" href="roomInspect">Inspect</a
             >
             /
             <a class="inspect-approve-link" href="">Approve Check-out</a>
@@ -252,11 +252,13 @@
           <td class="table_row">1/1/2023</td>
           <td class="table_row">Approved</td>
           <td class="table_row">
-            <a class="inspect-approve-link" href="roomInspection.jsp"
+            <a class="inspect-approve-link" href="roomInspect"
               >Inspect</a
             >
             /
             <a class="inspect-approve-link" href="">Approve Check-out</a>
+            <a class="inspect-approve-link" href="roomInspect">Inspect</a>
+            
           </td>
         </tr>
       </table>

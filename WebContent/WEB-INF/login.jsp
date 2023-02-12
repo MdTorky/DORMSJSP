@@ -111,6 +111,8 @@
   </head>
 
   <body>
+  
+
     <a href="home.jsp"
       ><img
         src="img/logo2.png"
@@ -129,12 +131,12 @@
       <div id="login">
         <div id="email">
           <h3>Email</h3>
-          <input type="email" class="input_field" name = "email"/>
+          <input type="email" class="input_field" name = "email" required"/>
         </div>
 
         <div id="password">
           <h3>Password</h3>
-          <input type="password" class="input_field" />
+          <input type="password" class="input_field" name = "password" required/>
         </div>
       </div>
 
@@ -149,5 +151,6 @@
         
       </form>
     </div>
+
   </body>
 </html>

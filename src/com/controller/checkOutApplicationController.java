@@ -3,6 +3,7 @@ package com.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import databaseConnection.DbConnect;
 
@@ -21,10 +22,7 @@ public class checkOutApplicationController {
 	public String checkOut(@RequestParam ("check_out_date") Date checkOutDate, @RequestParam ("check_out_time") String checkOutTime, HttpServletRequest request) {
 		
 	    HttpSession session = request.getSession();
-	    Integer userId = (Integer) session.getAttribute("userId");    
-	    // user _user = new user();
-	    // _user.setUserEmail(email);
-	    // session.setAttribute("user", _user);
+	    Integer userId = (Integer) session.getAttribute("userId");
 	    
 	    java.sql.Date currentDate=new java.sql.Date(System.currentTimeMillis());	        
 	    
@@ -44,6 +42,7 @@ public class checkOutApplicationController {
 	      pstmt.setInt(5, userId);
 	      
 	      pstmt.executeUpdate();
+		  session.setAttribute("checkOutUserId", userId);
 	      
 	  }
 	    catch (SQLException ex) {
@@ -54,6 +53,18 @@ public class checkOutApplicationController {
 	    }
 	    return "student_home";
 		
+	}
+
+	@RequestMapping("/managerCheckOutApplications")
+	public ModelAndView managerCheckOutApplications() {
+		Connection conn = DbConnect.openConnection();
+		ModelAndView model = new ModelAndView("managerCheckOutApplications");
+		
+		String sql = "SELECT * from checkoutapplication";
+		ResultSet resultSet;
+
+		return model;
+	
 	}
 
     

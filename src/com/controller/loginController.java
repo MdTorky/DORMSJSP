@@ -1,11 +1,15 @@
 package com.controller;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -20,7 +24,7 @@ import databaseConnection.DbConnect;
 public class loginController {
 
 	@RequestMapping("/loginController")
-	public String add(@RequestParam("email") String email, HttpServletRequest request) {
+	public String add(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
 		ResultSet rs = null;
@@ -28,6 +32,7 @@ public class loginController {
 		String userType = "";
 		String userFullName = "";
 		String userPassportNo = "";
+		RequestDispatcher dispatcher = null;
 		String userNationality="";
 		String userPhoneNo = "";
 
@@ -36,10 +41,11 @@ public class loginController {
 			Connection conn = DbConnect.openConnection();
 			System.out.println("Connection successfully opened : " + conn.getMetaData());
 
-			String sql = "SELECT * FROM user WHERE userEmail = ?";
+			String sql = "SELECT * FROM user WHERE userEmail = ? and userPassword = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, email);
+			pstmt.setString(2, password);
 
 			rs = pstmt.executeQuery();
 
@@ -48,6 +54,7 @@ public class loginController {
 				userType = rs.getString("userType");
 				userFullName = rs.getString("userFullName");
 				userPassportNo = rs.getString("userPassportNo");
+				session.setAttribute("email", email);
 				userNationality = rs.getString("userNationality");
 				userPhoneNo = rs.getString("userPhoneNo");
 			} else {
@@ -61,6 +68,7 @@ public class loginController {
 		    
 		    userObj.setUserEmail(email);
 		    userObj.setUserFullName(userFullName);
+		    userObj.setUserPassportNo(userPassportNo);
 		    userObj.setUserNationality(userNationality);
 		    userObj.setUserPhoneNo(userPhoneNo);
 		    session.setAttribute("userObj", userObj);
@@ -70,12 +78,16 @@ public class loginController {
 			
 
 			if (userType.equals("Manager")) {
-				return "manager_home";
-			} else if (userType.equals("") || userType == null) {
-				return "login";
+				request.setAttribute("status", "success");
+				dispatcher = request.getRequestDispatcher("managerHome");
+			} else if (userType.equals("Student")) {
+				request.setAttribute("status", "success");
+				dispatcher = request.getRequestDispatcher("studentHome");
 			} else {
-				return "student_home";
+				request.setAttribute("status", "failed");
+				dispatcher = request.getRequestDispatcher("login");
 			}
+			dispatcher.forward(request, response);
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();

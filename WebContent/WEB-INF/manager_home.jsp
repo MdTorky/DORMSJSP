@@ -3,11 +3,11 @@
 
 <!-- If user is not logged in, do not allow entry to home page -->
 
-<%-- <%
-    if (session.getAttribute("name") == null){
+<%
+    if (session.getAttribute("email") == null){
         response.sendRedirect("login");
     }
-%> --%>
+%> 
 
 <!DOCTYPE html>
 <html>
@@ -19,6 +19,12 @@
            <link rel="canonical" href="http://fontawesome.com/icons/cart-shopping" />
     <script src="https://kit.fontawesome.com/b0afced649.js" crossorigin="anonymous"></script>
 
+    <script>
+      $(function () {
+        $("#header").load("assets/SAM_header.jsp");
+      });
+      //  call header file and store it in id=header
+    </script>
 
     <style>
         h1,
@@ -179,6 +185,8 @@
     <!-- <a href="home.jsp"><img src="img/logo2.png"
             style="width:300px; display: block; margin-left: auto; margin-right:auto"></a> -->
             <section id="header"></section>
+    <div id="header"></div>
+
 
     <div id="main_container">
         <h1>Welcome <span class="file"><jsp:getProperty property="userFullName" name="userObj"/></span> </h1>
@@ -202,5 +210,6 @@
 
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffd700" fill-opacity="1" d="M0,160L60,165.3C120,171,240,181,360,160C480,139,600,85,720,90.7C840,96,960,160,1080,165.3C1200,171,1320,117,1380,90.7L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
     </div>
+    
   </body>
 </html>

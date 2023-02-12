@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -100,17 +101,9 @@ public class mainController {
 	}
 
 	// Manager Pages
-	@RequestMapping("/managerCheckInApplications")
-	public ModelAndView managerCheckInApplications() {
-		ModelAndView model = new ModelAndView("managerCheckInApplications");
-		return model;
-	}
+	
 
-	@RequestMapping("/managerCheckOutApplications")
-	public ModelAndView managerCheckOutApplications() {
-		ModelAndView model = new ModelAndView("managerCheckOutApplications");
-		return model;
-	}
+	
 
 	@RequestMapping("/facilityApplications")
 	public ModelAndView facilityApplications() {
@@ -121,6 +114,12 @@ public class mainController {
 	@RequestMapping("/addParcel")
 	public ModelAndView addParcel() {
 		ModelAndView model = new ModelAndView("addParcel");
+		return model;
+	}
+	
+	@RequestMapping("/roomInspect")
+	public ModelAndView roomInspect() {
+		ModelAndView model = new ModelAndView("inspectRoom");
 		return model;
 	}
 
@@ -136,11 +135,6 @@ public class mainController {
 		return model;
 	}
 
-	@RequestMapping("/accommodationReport")
-	public ModelAndView accommodationReport() {
-		ModelAndView model = new ModelAndView("accommodationReport");
-		return model;
-	}
 
 	@RequestMapping("/managerProfile")
 	public ModelAndView managerProfile() {
@@ -242,5 +236,7 @@ public class mainController {
 
 		return "null";
 	}
+	
+
 
 }
