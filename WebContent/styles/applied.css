@@ -158,3 +158,61 @@ body {
     z-index: 1;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+.box{
+    position: relative;
+     margin: auto;
+    align-items: center;
+    display: flex;
+    width: 80px;
+	justify-content: center;
+   margin-top: 20px;
+    margin-bottom: 50px; 
+}
+.input {
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    background: none;
+    border: 4px solid gold;
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-family: verdana;
+    font-size: 26px;
+    color: gold;
+    outline: none;
+    transition: .5s;
+    margin: auto;
+}
+.box:hover input{
+    width: 350px;
+    background: #333333;
+    border-radius: 10px;
+}
+.box i{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(-50%,-50%);
+    font-size: 26px;
+    color: gold;
+    transition: .2s;
+    left: 40px;
+    align-items: center;
+    text-align: center;
+
+}
+.box:hover i{
+    opacity: 0;
+    z-index: -1;
+}

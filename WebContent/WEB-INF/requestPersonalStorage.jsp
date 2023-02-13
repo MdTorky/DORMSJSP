@@ -16,46 +16,54 @@
             $('#header').load('assets/header.jsp');
          })
         </script>
+        
+        <style>
+        
+        .title
+         {
+            color: gold;
+            font-family: verdana;
+            text-align: center;
+        }
+        input:read-only {
+  background-color: #E1D9D1;
+}
+        </style>
     <title>Request Personal Storage</title>
 </head>
 <body>
-
+<jsp:useBean id="userObj" scope="session" class="com.model.user"></jsp:useBean>
 	<!-- Header Section -->
   <section id="header"></section>
 
-
+  <h1 class="title">Request Personal Storage</h1>
 
         <section id="form1">
             <div class="container1">
-              <form method="POST" class="forma" action= "storage/addStorage">
+              <form method="post" class="forma" action= "addStorage">
                     <div class="form first">
                       <div class="details personal">
                         <h1 class="booktitle">Personal Details</h1>
             
                           <div class="fields">
                               <div class="input-field">
-                                  <label>First Name<span class="req">*</span></label>
-                                  <input type="text" name="fname" placeholder="Enter First Name" required>
-                              </div>
-            
-                              <div class="input-field">
-                                <label>Last Name<span class="req">*</span></label>
-                                <input type="text" name="lname" placeholder="Enter Last Name" required >
+                                  <label>Full Name<span class="req">*</span></label>
+                                  <input type="text" name="fname" value="<jsp:getProperty property="userFullName" name="userObj"/>" required readonly>
                               </div>
             
                               <div class="input-field">
                                 <label>Email<span class="req">*</span></label>
-                                <input type="email" name="email" value="" placeholder="Enter Email" required>
+                                <input type="email" name="email" value="<jsp:getProperty property="userEmail" name="userObj"/>" required readonly>
                              </div>
             
                              <div class="input-field">
                                <label>Mobile Number<span class="req">*</span></label>
-                               <input type="number" name="phone" placeholder="Enter Mobile Number" required>
+                               <input type="number" name="phone"  value="<jsp:getProperty property="userPhoneNo" name="userObj"/>" readonly required>
                              </div>
             
                              <div class="input-field">
                                 <label>Nationality<span class="req">*</span></label>
-                                <input type="text" name="nationality" placeholder="Enter Nationality" required>
+                                <input type="text" name="nationality" value="<jsp:getProperty property="userNationality" name="userObj"/>" readonly required>
                              </div>
                             
                              <div class="input-field">

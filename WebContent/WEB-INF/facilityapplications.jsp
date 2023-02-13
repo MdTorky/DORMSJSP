@@ -1,5 +1,10 @@
 <!-- Nafis -->
 
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%> 
+<%@page import="com.model.user"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,8 +16,8 @@
 
     <link rel="shortcut icon" href="/img/favicon.png">
     <link rel="stylesheet" href="styles/applied.css">
-
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://kit.fontawesome.com/b0afced649.js" crossorigin="anonymous"></script>
     <script>
         $(function () {
             $('#header').load('assets/SAM_header.jsp');
@@ -58,7 +63,7 @@
         color: gold;
         font-size: 150%;
         font-weight: bold;
-        margin: 2%;
+        /* margin: 2%; */
         text-align: center;
         /* width: 65%; */
         text-align: center;
@@ -68,10 +73,11 @@
         text-align: center;
         font-size: 100%;
         font-weight: bold;
-        margin-top: 5%;
-        margin: auto;
+        margin-top: 70px;
+       	margin-left:auto;
+       	margin-right: auto;
       }
-      .table_header td {
+      .table_header th {
         border: 8px solid #333333;
         border-radius: 25px;
         padding: 0.7rem;
@@ -119,82 +125,135 @@
         padding: 2px;    
       }
       
+   
+   
+   table .denyBtn{
+    cursor: pointer;
+   /*  background-color: rgb(198, 26, 26); */
+    font-size: 15px;
+    font-family: verdana;
+    width: 75px;
+    padding: 5px;
+     background: transparent;
+    border: none;
+    font-weight: bold;
+    
 
+    color: rgb(198, 26, 26);
+    transition: 0.7s;
+}
+
+table .approveBtn{
+    cursor: pointer;
+/*     background-color: rgb(25, 123, 25); */
+    font-size: 15px;
+    font-family: verdana;
+    width: 75px;
+    padding: 5px;
+    background: transparent;
+    border: none;
+    font-weight: bold;
+
+    color: rgb(25, 123, 25);
+    transition: 0.7s;
+}
+
+table .approveBtn:hover{
+    transform:scale(1.3);
+}
+table .denyBtn:hover{
+    transform:scale(1.3);
+}
+   
       
     </style>
   </head>
   <body>
     <section id="header"></section>
       <div class="page-name">Facilities Applications</div>
-      <table class="table">
+      
+      
+        <div class="box">
+    <form name="search">
+        <input type="text" class="input" name="txt" id="myInput" onmouseout="this.value = ''; this.blur();" onkeyup="myFunction()">
+    </form>
+<i class="fas fa-search"></i>
+</div>
+      <table class="table" id="myTable">
         <tr class="table_header">
-          <td>Application Date</td>
-          <td>Request Date</td>
-          <td>Request Time</td>
-          <td>Name</td>
-          <td>Room No</td>
-          <td>Facility</td>
-          <td>Status</td>
-          <td>Action</td>
+          <th>Application Date</th>
+          <th>Request Date</th>
+          <th>Request Time</th>
+          <th>Name</th>
+          <th>Room No</th>
+          <th>Facility</th>
+          <th>Status</th>
+          <th>Action</th>
         </tr>
+
+         <c:forEach items="${facilityList}" var="fl">
+          <c:forEach items="${userList}" var="ur"> 
+
+          <c:if test = "${fl.userId eq ur.userId}">
         <tr>
-          <td class="table_row">12/12/2022</td>
-          <td class="table_row">12/12/2022</td>
-          <td class="table_row">8 pm to 10 pm</td>
-          <td class="table_row">Nafis Ahmed</td>
-          <td class="table_row">Q3957304</td>
-          <td class="table_row">BBQ</td>
-          <td class="table_row">Waiting Approval</td>
+          <td class="table_row">${fl.facilityApplicationDate}</td>
+          <td class="table_row">${fl.facilityRequestDate}</td>
+          <td class="table_row">${fl.facilityRequestTime}</td>
+          <td class="table_row">${ur.userFullName}</td>
+          <td class="table_row">${fl.userRoomNo}</td>
+          <td class="table_row">${fl.facilityType}</td>
+           <c:if test = "${fl.facilityApplicationStatus == 'Paid'}">
+        <td class = "table-row" style="color:Yellow; font-weight:bold">${fl.facilityApplicationStatus}</td>
+        </c:if>
+        <c:if test = "${fl.facilityApplicationStatus == 'Booked'}">
+        <td class = "table-row" style="color:Orange; font-weight:bold">${fl.facilityApplicationStatus}</td>
+        </c:if>
+         <c:if test = "${fl.facilityApplicationStatus == 'Approved'}">
+        <td class = "table-row" style="color:mediumseagreen; font-weight:bold">${fl.facilityApplicationStatus}</td>
+        </c:if>
+         <c:if test = "${fl.facilityApplicationStatus == 'Denied'}">
+        <td class = "table-row" style="color:red; font-weight:bold">${fl.facilityApplicationStatus}</td>
+        </c:if>
           <td class="table_row">
-            <a href="" class="approve">Approve</a> /
-            <a href="" class="reject">Reject</a>
+          <form action="approveFacility" method="post">
+          <input type="hidden" value="${fl.userId}" name="userId">
+            <button class="approveBtn">Approve</button> /
+            </form>
+            <form action="denyFacility" method="post">
+                <input type="hidden" value="${fl.userId}" name="userId">
+            <button class="denyBtn">Deny</button>
+            </form>
           </td>
         </tr>
-        <tr>
-            <td class="table_row">14/12/2022</td>
-            <td class="table_row">14/12/2022</td>
-            <td class="table_row">8 pm to 9 pm</td>
-            <td class="table_row">Ayan Hossain</td>
-            <td class="table_row">Q4557306</td>
-            <td class="table_row">Futsal</td>
-            <td class="table_row">Waiting Approval</td>
-            <td class="table_row">
-              <a href="" class="approve">Approve</a> /
-              <a href="" class="reject">Reject</a>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="table_row">12/12/2022</td>
-            <td class="table_row">12/12/2022</td>
-            <td class="table_row">3 pm to 5 pm</td>
-            <td class="table_row">Hassan Mustafa</td>
-            <td class="table_row">Q5557309</td>
-            <td class="table_row">Gym</td>
-            <td class="table_row">Approval</td>
-            <td class="table_row">
-              <a href="" class="approve">Approve</a> /
-              <a href="" class="reject">Reject</a>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="table_row">21/12/2022</td>
-            <td class="table_row">21/12/2022</td>
-            <td class="table_row">8 pm to 10 pm</td>
-            <td class="table_row">Bida Demha</td>
-            <td class="table_row">Q7957404</td>
-            <td class="table_row">Ping-pong</td>
-            <td class="table_row">Approval</td>
-            <td class="table_row">
-              <a href="" class="approve">Approve</a> /
-              <a href="" class="reject">Reject</a>
-            </td>
-          </tr>
+        </c:if>
+</c:forEach>
+        </c:forEach>
         
        
       
       </table>
     </div>
+    
+    <script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[3];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    
+</script>
   </body>
 </html>

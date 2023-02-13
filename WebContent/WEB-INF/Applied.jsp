@@ -1,5 +1,9 @@
 <!-- Nafis -->
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%> 
+<%@page import="com.model.user"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -102,19 +106,34 @@
           <td>Requested Date</td>
           <td>Time Slot</td>
           <td>Room No.</td>
-          <td>Name</td>
           <td>Status</td>
+          <td>Remark</td>
         </tr>
+        
+        <c:forEach items="${facilityList}" var="fl">
+        <c:forEach items="${userList}" var="ur"> 
         <tr>
-          <td class="table_row">12/12/2022</td>
-          <td class="table_row">Futsal</td>
-          <td class="table_row">14/12/2022</td>
-          <td class="table_row">8 pm to 10 pm</td>
-          <td class="table_row">BETA801</td>
-          <td class="table_row">Nafis Ahmed</td>
-          <td class="table_row">Approved
-          </td>
+          <td class="table_row">${fl.facilityApplicationDate}</td>
+          <td class="table_row">${fl.facilityType}</td>
+          <td class="table_row">${fl.facilityRequestDate }</td>
+          <td class="table_row">${fl.facilityRequestTime }</td>
+          <td class="table_row">${ur.userRoomNo }</td>
+         <c:if test = "${fl.facilityApplicationStatus == 'Paid'}">
+        <td class = "table_row" style="color:Yellow; font-weight:bold">${fl.facilityApplicationStatus}</td>
+        </c:if>
+        <c:if test = "${fl.facilityApplicationStatus == 'Booked'}">
+        <td class = "table_row" style="color:Orange; font-weight:bold">${fl.facilityApplicationStatus}</td>
+        </c:if>
+         <c:if test = "${fl.facilityApplicationStatus == 'Approved'}">
+        <td class = "table_row" style="color:mediumspringgreen; font-weight:bold">${fl.facilityApplicationStatus}</td>
+        </c:if>
+         <c:if test = "${fl.facilityApplicationStatus == 'Denied'}">
+        <td class = "table_row" style="color:red; font-weight:bold">${fl.facilityApplicationStatus}</td>
+        </c:if>
+          <td class="table_row">${fl.facilityApproveRejectRemark}</td>
         </tr>
+        </c:forEach>
+        </c:forEach>
       </table>
     </div>
 
@@ -122,22 +141,28 @@
       <table class="table2">
         <tr class="table_header">
           <td>Application Date</td>
-          <td>Name</td>
           <td>Room Number</td>
-          <td>Mobile Number</td>
-          <td>Complaint Date</td>
-          <td>Status</td>
+          <td>Complaint Status</td>
+          <td>Complaint Description</td>
         </tr>
+        
+        <c:forEach items="${complaintList}" var="cl">
+        <c:forEach items="${userList}" var="ur"> 
         <tr>
-          <td class="table_row">12/12/2022</td>
-          <td class="table_row">Diba Demha</td>
-          <td class="table_row">BETA8881</td>
-          <td class="table_row">01715150617</td>
-          <td class="table_row">12/12/2022</td>
-          <td class="table_row">Solved</td>
+          <td class="table_row">${cl.complaintDate}</td>
+          <td class="table_row">${ur.userRoomNo}</td>
+           <c:if test = "${cl.complaintStatus == 'Waiting'}">
+        <td class = "table_row" style="color:Yellow; font-weight:bold">${cl.complaintStatus}</td>
+        </c:if>
+        <c:if test = "${cl.complaintStatus == 'Solved'}">
+        <td class = "table_row" style="color:mediumspringgreen; font-weight:bold">${cl.complaintStatus}</td>
+        </c:if>
+          <td class="table_row">${cl.complaintDescription}</td>
         
           </td>
         </tr>
+        </c:forEach>
+        </c:forEach>
         
 
           
@@ -149,25 +174,33 @@
     <div class="page-name">Storage Applications</div>
       <table class="table2">
         <tr class="table_header">
-          <td>Application Date</td>
-          <td>Name</td>
-          <td>ID</td>
-          <td>Email</td>
-          <td>Weight</td>
+          <td>Box Numbers</td>
           <td>Start Date</td>
+          <td>End Date</td>
           <td>Status</td>
-        </tr>
-        <tr>
-          <td class="table_row">12/12/2022</td>
-          <td class="table_row">Nafis</td>
-          <td class="table_row">001</td>
-          <td class="table_row">ahmednafisbd15@gmail.com</td>
-          <td class="table_row">21 KG</td>
-          <td class="table_row">22/12/2022</td>
-          <td class="table_row">Waiting Approval
-          </td>
+          <td>Remark</td>
         </tr>
         
+         <c:forEach items="${storageList}" var="sl"> 
+        <tr>
+          <td class="table_row">${sl.storageBoxesNo }</td>
+          <td class="table_row">${sl.storageStartDate }</td>
+          <td class="table_row">${sl.storageStartEnd }</td>
+          <c:if test = "${sl.storageStatus== 'Booked'}">
+        <td class = "table_row" style="color:orange; font-weight:bold">${sl.storageStatus}</td>
+        </c:if>
+        <c:if test = "${sl.storageStatus == 'Approved'}">
+        <td class = "table_row" style="color:mediumspringgreen; font-weight:bold">${sl.storageStatus}</td>
+        </c:if>
+        <c:if test = "${sl.storageStatus == 'Paid'}">
+        <td class = "table_row" style="color:Yellow; font-weight:bold">${sl.storageStatus}</td>
+        </c:if>
+        <c:if test = "${sl.storageStatus == 'Denied'}">
+        <td class = "table_row" style="color:red; font-weight:bold">${sl.storageStatus}</td>
+        </c:if>
+          <td class="table_row">${sl.storageApproveRejectRemark }</td>
+        </tr>
+        </c:forEach>
 
           
         
@@ -180,23 +213,23 @@
       <table class="table2">
         <tr class="table_header">
           <td>Application Date</td>
-          <td>Name</td>
-          <td>Chcekout Date</td>
-          <td>Checkout Time</td>
+          <td>Check-In Date</td>
           <td>Passport No.</td>
-          
           <td>Status</td>
+          <td>Remark</td>
         </tr>
+        
+        <c:forEach items="${checkInList}" var="cil"> 
+         <c:forEach items="${userList}" var="ur"> 
         <tr>
-          <td class="table_row">12/12/2022</td>
-          <td class="table_row">Nafis Ahmed</td>
-          <td class="table_row">24/12/2022</td>
-          <td class="table_row">10:00</td>
-          <td class="table_row">B89089</td>
-         
-          <td class="table_row">Waiting Approval
-          </td>
+          <td class="table_row">${cil.checkInApplicationDate}</td>
+          <td class="table_row">${cil.userCheckInDate}</td>
+          <td class="table_row">${ur.userPassportNo}</td>
+          <td class="table_row">${cil.checkInApplicationStatus}</td>
+          <td class="table_row">${cil.approveRejectRemark }</td>
         </tr>
+        </c:forEach>
+        </c:forEach>
         
 
           
@@ -210,23 +243,22 @@
       <table class="table2">
         <tr class="table_header">
           <td>Application Date</td>
-          <td>Facility</td>
-          <td>Requested Date</td>
-          <td>Time Slot</td>
+          <td>Check-Out Date</td>
+          <td>Check-Out Time</td>
           <td>Room No.</td>
-          <td>Name</td>
           <td>Status</td>
         </tr>
+                <c:forEach items="${checkOutList}" var="col"> 
+         <c:forEach items="${userList}" var="ur"> 
         <tr>
-          <td class="table_row">12/12/2022</td>
-          <td class="table_row">Futsal</td>
-          <td class="table_row">14/12/2022</td>
-          <td class="table_row">8 pm to 10 pm</td>
-          <td class="table_row">BETA801</td>
-          <td class="table_row">Nafis Ahmed</td>
-          <td class="table_row">Approved
-          </td>
+          <td class="table_row">${col.checkOutApplicationDate}</td>
+          <td class="table_row">${col.userCheckOutDate}</td>
+          <td class="table_row">${col.userCheckOutTime}</td>
+          <td class="table_row">${ur.userRoomNo}</td>
+          <td class="table_row">${col.checkOutApplicationStatus}</td>
         </tr>
+        </c:forEach>
+        </c:forEach>
         
 
           

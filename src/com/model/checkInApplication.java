@@ -1,5 +1,7 @@
 package com.model;
 
+//import java.util.Date;
+
 import java.sql.*;
 
 public class checkInApplication {
@@ -7,6 +9,7 @@ public class checkInApplication {
     int checkInApplicationId;
     int userId;
     Date userCheckInDate;
+	Date checkInApplicationDate;
     String checkInApplicationStatus;
     String approveRejectRemark;
 
@@ -28,6 +31,12 @@ public class checkInApplication {
     public void setUserCheckInDate(Date userCheckInDate) {
         this.userCheckInDate = userCheckInDate;
     }
+    public Date getCheckInApplicationDate() {
+		return checkInApplicationDate;
+	}
+	public void setCheckInApplicationDate(Date checkInApplicationDate) {
+		this.checkInApplicationDate = checkInApplicationDate;
+	}
     public String getCheckInApplicationStatus() {
         return checkInApplicationStatus;
     }

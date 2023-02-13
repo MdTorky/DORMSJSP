@@ -125,6 +125,7 @@
 
 <body>
 
+	<jsp:useBean id="userObj" scope="session" class="com.model.user"></jsp:useBean>
     <div id="header"></div>
 
 
@@ -132,11 +133,15 @@
     <div id="main_container">
         <h1>Payment</h1>
 
+
+<form action="transaction" method="post">
         <fieldset style="display:flex; justify-content: center; border:0;">
             <input type="radio" id="rent" name="payment_for" value="Rent">
             <label for="Rent">Rent</label>
             <input type="radio" id="parcels" name="payment_for" value="Parcels">
             <label for="Parcels">Parcels</label>
+            <input type="radio" id="storage" name="payment_for" value="Personal Storage">
+            <label for="Personal Storage">Personal Storage</label>
             <input type="radio" id="facilities" name="payment_for" value="Facilities">
             <label for="Facilities">Facilities</label>
         </fieldset>
@@ -147,46 +152,48 @@
 
             <div id="full_name">
                 <h3>Full Name</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" value="<jsp:getProperty property="userFullName" name="userObj"/>"
+						readonly required>
             </div>
 
 
             <div id="passport_number">
                 <h3>Passport Number</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" name="passport" required value="${passport}"/>
+					
             </div>
 
         </div>
 
-        <div id="middle_side">
+<!--         <div id="middle_side">
 
 
             <div id="amount">
                 <h3>Amount (in RM)</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" required>
             </div>
 
-        </div>
+        </div> -->
 
         <div id="bottom_side">
             <div id="card_number">
                 <h3>Card Number</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" required>
             </div>
 
             <div id="expiration_date">
                 <h3>Expiration Date</h3>
-                <input type="text" class="input_field" placeholder="mm/yy">
+                <input type="text" class="input_field" required placeholder="mm/yy">
             </div>
 
             <div id="cvc">
                 <h3>CVC</h3>
-                <input type="number" class="input_field">
+                <input type="number" class="input_field" required>
             </div>
 
             <div id="cardholder_name">
                 <h3>Cardholder name</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" required>
             </div>
 
         </div>
@@ -195,8 +202,9 @@
         <div id="button">
             <button id="submit">Pay</button>
         </div>
-
+ </form>
     </div>
+   
 
 </body>
 

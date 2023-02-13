@@ -14,23 +14,40 @@ body {
 
 
 /* ScrollBar */
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
     width: 15px;
     border-radius:20px
   }
   
   *::-webkit-scrollbar-track {
     background-color: white;
-    /* border-radius:20px */
+    border-radius:20px
 
   }
   
   *::-webkit-scrollbar-thumb {
     background: #ffd700;
-    /* border-radius:20px */
+    border-radius:20px
   }
+ */
 
 
+/* width */
+::-webkit-scrollbar {
+	width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #333333;
+	border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: gold;
+	border-radius: 20px;
+}
 
 /* Navigation Bar */
 #header nav{
@@ -317,7 +334,7 @@ table{
     border-radius: 6px;
     padding: 30px;
     /* margin: 0 15px; */
-    margin-top: 90px;
+    /* margin-top: 20px; */
     /* background-color: red; */
 
 }
@@ -339,7 +356,7 @@ table{
 }
 .container1 .forma{
     position: relative;
-    margin-top: 16px;
+    margin-top: 6px;
     min-height: 490px;
     overflow: hidden;
 }
@@ -836,3 +853,69 @@ form.secActive .form.first{
 .column .approve:hover, .deny:hover{
     transform:scale(1.3);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .checkOut {
+            display: block;
+            width: 300px;
+            height: 50px;
+            line-height: 46px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 50px;
+            border: 2px solid gold;
+            color: gold;
+            font-size: 20px;
+            font-family: verdana;
+            position: relative;
+            overflow: hidden;
+            background: transparent;
+            text-transform: uppercase;
+            transition: all .35s;
+            cursor: pointer;
+            margin-top: 10px;
+            margin:auto;
+        }
+
+        .checkOut:before,
+        .checkOut:after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            bottom: -100%;
+            left: 0;
+            background: gold;
+            z-index: -1;
+            transition: all .35s;
+        }
+
+        .checkOut:before {
+            opacity: .5;
+        }
+
+        .checkOut:after {
+            transition-delay: .2s;
+        }
+
+         .checkOut:hover {
+            color: #333333;
+        }
+
+         .checkOut:hover:before,
+         .checkOut:hover:after {
+            bottom: 0;
+        }

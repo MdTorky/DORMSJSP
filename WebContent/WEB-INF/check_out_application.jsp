@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ page import="java.time.LocalDate"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -125,8 +130,20 @@
 
 <body>
 
+	<%
+	LocalDate currentDate = LocalDate.now();
+	LocalDate minDate = currentDate.plusMonths(1);
+	LocalDate maxDate = currentDate.plusMonths(12);
+	session.setAttribute("minDate", minDate);
+	session.setAttribute("maxDate", maxDate);
+	%>
+
+	<jsp:useBean id="userObj" scope="session" class="com.model.user"></jsp:useBean>
+
+
     <div id="header"></div>
 
+    <form action = "checkOutApp" method = "post">
     <div id="main_container">
         <h1>Check out Application</h1>
 
@@ -134,13 +151,15 @@
 
             <div id="full_name">
                 <h3>Full Name</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" value="<jsp:getProperty property="userFullName" name="userObj"/>"
+						readonly>
             </div>
 
 
             <div id="passport_number">
                 <h3>Passport Number</h3>
-                <input type="text" class="input_field">
+                <input type="text" class="input_field" value="<jsp:getProperty property="userPassportNo" name="userObj"/>"
+						readonly>
             </div>
 
         </div>
@@ -150,12 +169,12 @@
 
             <div id="check_out_date">
                 <h3>Check out Date</h3>
-                <input type="date" class="input_field">
+                <input type="date" class="input_field" name = "check_out_date" min="<c:out value = "${minDate}"> </c:out>" max="<c:out value = "${maxDate}"> </c:out>">
             </div>
 
             <div id="check_out_time">
                 <h3>Check out Time</h3>
-                <input type="time" class="input_field">
+                <input type="time" class="input_field" name = "check_out_time" min="09:30" max = "16:30">
             </div>
 
         </div>
@@ -165,12 +184,13 @@
         </div>
 
         <div id="checkbox" style="color: aliceblue; margin-left: 100px; padding-top: 40px;">
-            <input type="checkbox" id="terms_conditions"> I agree to the terms and conditions of Dorms Hostel Sdn Bhd
+            <input type="checkbox" id="terms_conditions" required> I agree to the terms and conditions of Dorms Hostel Sdn Bhd
         </div>
 
-
+		
 
     </div>
+    </form>
 
 </body>
 

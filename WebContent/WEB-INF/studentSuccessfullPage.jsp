@@ -1,37 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<title>Home</title>
-    <link rel="shortcut icon" href="img/favicon.png">
-	<link rel="stylesheet" href="styles/style2.css" />
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style2.css">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="http://fontawesome.com/icons/cart-shopping" />
+    <script src="https://kit.fontawesome.com/b0afced649.js" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>  
     
-
-
-    <style>
-        h1,
-        h2 {
-            color: gold;
+    <!-- for including header files -->
+    <script>
+         $(function() {
+            $('#header').load('assets/header.jsp');
+         })
+        </script>
+        
+        <style>
+        
+        .title
+         {
+            color: green;
             font-family: verdana;
             text-align: center;
         }
-
-        h1 {
-            font-weight: 800;
-            font-size: 50px;
-        }
-
-        #main_container {
-            padding: 20px;
-        }
-
-
-
-        button {
+        
+         button {
             display: block;
             width: 300px;
             height: 50px;
@@ -82,39 +77,23 @@
          button:hover:after {
             top: 0;
         }
-
-
-        input[type="text"]:hover,
-        input[type="password"]:hover {
-            border: 1px solid black;
-        }
-
-        #button:hover {
-            border: 3px solid #333333;
-        }
-    </style>
+        
+        </style>
+    <title>Successful</title>
 </head>
-
 <body>
 
-    <a href = "home.jsp"><img src="img/logo2.png" style="width:300px; display: block; margin-left: auto; margin-right:auto"></a>
+	<!-- Header Section -->
+  <section id="header"></section>
 
-    <div id="main_container">
-        <h1>Welcome to Dorms</h1>
+  <h1 class="title">Successful</h1>
 
-        <form>
-            <div id="button">
-                <button formaction="register" id="sign_in_button">Sign Up</button>
-            </div>
+        
+<form>
+<button formaction="studentHome" class="coolBeans">BACK</button>  
+          </form>  
+            
 
-            <br><br>
 
-            <div id="button">
-                <button formaction="login" id="sign_in_button">Sign In</button>
-            </div>
-        </form>
-    </div>
-
-</body>
-
-</html>
+  </body>
+  </html>
