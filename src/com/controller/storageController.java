@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.model.room;
 import com.model.storage;
 import com.model.user;
 
@@ -67,6 +68,7 @@ public class storageController {
 
 		ArrayList<storage> iList = new ArrayList<>();
 		ArrayList<user> uList = new ArrayList<>();
+		ArrayList<room> rooms = new ArrayList<room>();
 
 		Connection conn = DbConnect.openConnection();
 		System.out.println("Connection successfully opened : " + conn.getMetaData());
@@ -112,9 +114,43 @@ public class storageController {
 		}
 
 		model.addAttribute("userList", uList);
+		
+		
+		
+		
+		
+		String roomSql = "SELECT * from room";
+		PreparedStatement preparedStatement = conn.prepareStatement(roomSql);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		while (resultSet.next()) {
+
+			room roomInstance = new room();
+
+			int roomId = resultSet.getInt("roomId");
+			String roomBlockName = resultSet.getString("roomBlockName");
+			int roomLevel = resultSet.getInt("roomLevel");
+			int roomNo = resultSet.getInt("roomNo");
+			int userId = resultSet.getInt("userId");
+
+			roomInstance.setRoomId(roomId);
+			roomInstance.setRoomBlockName(roomBlockName);
+			roomInstance.setRoomLevel(roomLevel);
+			roomInstance.setRoomNo(roomNo);
+			roomInstance.setUserId(userId);
+
+			rooms.add(roomInstance);
+		}
+
+		model.addAttribute("rooms", rooms);
+		
 
 		return "manageStorage";
 	}
+	
+	
+	
+	
+	
 
 	@RequestMapping("/approveStorage")
 	public void approve(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

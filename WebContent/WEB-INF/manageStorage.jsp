@@ -66,17 +66,19 @@
   
  <c:forEach items="${storageList}" var="st">
  <c:forEach items="${userList}" var="ur"> 
-
+<c:forEach items="${rooms}" var="room">
 
 <c:if test = "${st.userId eq ur.userId}">
 
- 	
+ 	<c:if test="${ur.userId == room.userId}">
 
+						
 		 
     
     <tr class="table-row">
 
-        <td class = "table-data">${ur.userRoomNo}</td>
+
+       <td class="table-data">${room.roomBlockName}-${room.roomLevel}-${room.roomNo}</td>
         <td class = "table-data">${ur.userFullName}</td>
         <td class = "table-data">${ur.userEmail}</td>
         <td class = "table-data">${st.storageBoxesNo}</td>
@@ -107,8 +109,11 @@
                 </form>
             </div>
         </td>
+     
     </tr>
+    </c:if>
    </c:if>
+        </c:forEach>
     </c:forEach>
  </c:forEach> 
 </tbody>
