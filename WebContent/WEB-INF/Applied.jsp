@@ -135,7 +135,7 @@ table {
 						<td class="table_row"
 							style="color: mediumspringgreen; font-weight: bold">${fl.facilityApplicationStatus}</td>
 					</c:if>
-					<c:if test="${fl.facilityApplicationStatus == 'Denied'}">
+					<c:if test="${fl.facilityApplicationStatus == 'Rejected'}">
 						<td class="table_row" style="color: red; font-weight: bold">${fl.facilityApplicationStatus}</td>
 					</c:if>
 					<td class="table_row">${fl.facilityApproveRejectRemark}</td>
@@ -201,7 +201,7 @@ table {
 				<c:if test="${sl.storageStatus == 'Paid'}">
 					<td class="table_row" style="color: Yellow; font-weight: bold">${sl.storageStatus}</td>
 				</c:if>
-				<c:if test="${sl.storageStatus == 'Denied'}">
+				<c:if test="${sl.storageStatus == 'Rejected'}">
 					<td class="table_row" style="color: red; font-weight: bold">${sl.storageStatus}</td>
 				</c:if>
 				<td class="table_row">${sl.storageApproveRejectRemark }</td>
@@ -227,7 +227,19 @@ table {
 						<td class="table_row">${cil.checkInApplicationDate}</td>
 						<td class="table_row">${cil.userCheckInDate}</td>
 						<td class="table_row">${ur.userPassportNo}</td>
-						<td class="table_row">${cil.checkInApplicationStatus}</td>
+						<c:if test="${cil.checkInApplicationStatus== 'Booked'}">
+					<td class="table_row" style="color: orange; font-weight: bold">${cil.checkInApplicationStatus}</td>
+				</c:if>
+				<c:if test="${cil.checkInApplicationStatus == 'Approved'}">
+					<td class="table_row"
+						style="color: mediumspringgreen; font-weight: bold">${cil.checkInApplicationStatus}</td>
+				</c:if>
+				<c:if test="${cil.checkInApplicationStatus == 'Paid'}">
+					<td class="table_row" style="color: Yellow; font-weight: bold">${cil.checkInApplicationStatus}</td>
+				</c:if>
+				<c:if test="${cil.checkInApplicationStatus == 'Rejected'}">
+					<td class="table_row" style="color: red; font-weight: bold">${cil.checkInApplicationStatus}</td>
+				</c:if>
 					</tr>
 				</c:forEach>
 			</c:forEach>
@@ -258,7 +270,19 @@ table {
 								<td class="table_row">${room.roomBlockName}-${room.roomLevel}-${room.roomNo}</td>
 							</c:if>
 						</c:forEach>
-						<td class="table_row">${col.checkOutApplicationStatus}</td>
+					<c:if test="${col.checkOutApplicationStatus== 'Booked'}">
+					<td class="table_row" style="color: orange; font-weight: bold">${col.checkOutApplicationStatus}</td>
+				</c:if>
+				<c:if test="${col.checkOutApplicationStatus == 'Approved'}">
+					<td class="table_row"
+						style="color: mediumspringgreen; font-weight: bold">${col.checkOutApplicationStatus}</td>
+				</c:if>
+				<c:if test="${col.checkOutApplicationStatus == 'Paid'}">
+					<td class="table_row" style="color: Yellow; font-weight: bold">${col.checkOutApplicationStatus}</td>
+				</c:if>
+				<c:if test="${col.checkOutApplicationStatus == 'Rejected'}">
+					<td class="table_row" style="color: red; font-weight: bold">${col.checkOutApplicationStatus}</td>
+				</c:if>
 					</tr>
 
 				<%-- </c:forEach> --%>

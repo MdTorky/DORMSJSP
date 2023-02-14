@@ -39,24 +39,62 @@ h1 {
 	border-radius: 15px;
 }
 
-#sign_up_button {
-	background-color: green;
-	color: black;
-	padding: 15px 32px;
-	text-align: center;
+#button{
+	margin-top:30px;
+}
+button {
+	display: block;
+	width: 300px;
+	height: 50px;
+	line-height: 46px;
 	text-decoration: none;
-	font-Weight: bold;
+	text-align: center;
+	border-radius: 50px;
+	border: 2px solid gold;
+	color: gold;
 	font-size: 20px;
-	border-radius: 20px;
-	border: solid green;
+	font-family: verdana;
+	position: relative;
+	overflow: hidden;
+	background: transparent;
+	text-transform: uppercase;
+	transition: all .35s;
+	cursor: pointer;
+	margin-top: 30px;
+	margin: auto;
 }
 
-#button {
-	display: flex;
-	justify-content: center;
+button:before, button:after {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: -100%;
+	left: 0;
+	background: gold;
+	z-index: -1;
+	transition: all .35s;
 }
+
+button:before {
+	opacity: .5;
+}
+
+button:after {
+	transition-delay: .2s;
+}
+
+button:hover {
+	color: #333333;
+}
+
+button:hover:before, button:hover:after {
+	top: 0;
+}
+
 
 #top_side, #middle_side, #bottom_side {
+margin-left: 40px;
 	padding: 20px;
 	display: flex;
 	justify-content: center;
@@ -68,9 +106,7 @@ input[type="text"]:hover, input[type="number"], input[type="text"],
 	margin: 25px;
 }
 
-#button:hover {
-	border: 3px solid #333333;
-}
+
 
 label, h3 {
 	color: gold;
@@ -83,7 +119,7 @@ label, h3 {
 }
 
 .arrange #left {
-	margin-left: 200px;
+	margin-left: 50px;
 	text-align: center;
 }
 
@@ -104,6 +140,10 @@ textarea {
 	font-weight: bold;
 	text-align: center;
 	color: #333333;
+}
+
+input:read-only {
+  background-color: #E1D9D1;
 }
 </style>
 </head>
@@ -152,7 +192,7 @@ textarea {
 			</div>
 
 			<div id="button">
-				<button type="submit" id="sign_up_button">SUBMIT</button>
+				<button id="submit">Submit</button>
 			</div>
 
 		</form>
