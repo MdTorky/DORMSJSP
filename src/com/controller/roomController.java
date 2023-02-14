@@ -83,16 +83,6 @@ public class roomController {
 		totalAvailable = alphaAvailable + betaAvailable + deltaAvailable;
 		totalFull = alphaFull + betaFull + deltaFull;
 
-		// System.out.println("Total Rooms: " + totalRooms);
-		// System.out.println("totalAvailable: " + totalAvailable);
-		// System.out.println("totalFull: " + totalFull);
-		// System.out.println("alphaAvailable: " + alphaAvailable);
-		// System.out.println("alphaFull: " + alphaFull);
-		// System.out.println("betaAvailable: " + betaAvailable);
-		// System.out.println("betaFull: " + betaFull);
-		// System.out.println("deltaAvailable: " + deltaAvailable);
-		// System.out.println("deltaFull: " + deltaFull);
-
 		model.addObject("rooms", rooms);
 		model.addObject("totalRooms", totalRooms);
 		model.addObject("totalAvailable", totalAvailable);

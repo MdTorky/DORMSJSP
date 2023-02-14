@@ -7,12 +7,12 @@ import java.sql.*;
  */
 public class checkOutApplication {
 
-    private int checkOutApplicationId;
-    private int userId;
-    private Date checkOutApplicationDate;
-    private Date userCheckOutDate;
-    private String userCheckOutTime;
-    private String checkOutApplicationStatus;
+	private int checkOutApplicationId;
+	private int userId;
+	private Date checkOutApplicationDate;
+	private Date userCheckOutDate;
+	private String userCheckOutTime;
+	private String checkOutApplicationStatus;
 
 	public int getCheckOutApplicationId() {
 		return checkOutApplicationId;
@@ -21,9 +21,11 @@ public class checkOutApplication {
 	public void setCheckOutApplicationId(int checkOutApplicationId) {
 		this.checkOutApplicationId = checkOutApplicationId;
 	}
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
@@ -43,9 +45,11 @@ public class checkOutApplication {
 	public void setUserCheckOutDate(Date userCheckOutDate) {
 		this.userCheckOutDate = userCheckOutDate;
 	}
+
 	public String getUserCheckOutTime() {
 		return userCheckOutTime;
 	}
+
 	public void setUserCheckOutTime(String userCheckOutTime) {
 		this.userCheckOutTime = userCheckOutTime;
 	}

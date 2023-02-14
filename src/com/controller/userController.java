@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.model.room;
 import com.model.user;
 import com.mysql.cj.Session;
 
@@ -56,7 +57,7 @@ public class userController {
 	@RequestMapping("/managerProfile")
 	public ModelAndView managerProfile(HttpServletRequest request) {
 
-    ModelAndView model = new ModelAndView("managerProfile");
+		ModelAndView model = new ModelAndView("managerProfile");
 
 		Connection conn = DbConnect.openConnection();
 		HttpSession session = request.getSession();
@@ -104,18 +105,23 @@ public class userController {
 		return model;
 	}
 
-  @RequestMapping("/studentProfile")
+	@RequestMapping("/studentProfile")
 	public ModelAndView studentProfile(HttpServletRequest request) {
-   
+
 		ModelAndView model = new ModelAndView("studentProfile");
 
-    Connection conn = DbConnect.openConnection();
+		Connection conn = DbConnect.openConnection();
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 
 		String userSql = "SELECT * from user where userId = ?";
-		ResultSet resultSet;
+		String roomSql = "SELECT * from room where roomId = ?";
+
+		ResultSet resultSet, roomResultSet;
+
 		user currentUser = new user();
+		room userRoom = new room();
+		int currentUserRoomId = -1;
 
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(userSql);
@@ -130,6 +136,7 @@ public class userController {
 				String userEmail = resultSet.getString("userEmail");
 				String userPhoneNo = resultSet.getString("userPhoneNo");
 				String userProfileImage = resultSet.getString("userProfileImage");
+				int userRoomId = resultSet.getInt("userRoomId");
 
 				currentUser.setUserId(applicantUserId);
 				currentUser.setUserFullName(userFullName);
@@ -137,22 +144,108 @@ public class userController {
 				currentUser.setUserEmail(userEmail);
 				currentUser.setUserPhoneNo(userPhoneNo);
 				currentUser.setUserProfileImage(userProfileImage);
-
+				currentUser.setUserRoomId(userRoomId);
+				currentUserRoomId = currentUser.getUserRoomId();
 			}
+
+			PreparedStatement roomPreparedStatement = conn.prepareStatement(roomSql);
+			roomPreparedStatement.setInt(1, currentUserRoomId);
+			roomResultSet = roomPreparedStatement.executeQuery();
+			roomResultSet.next();
+
+			userRoom.setRoomId(roomResultSet.getInt("roomId"));
+			userRoom.setRoomBlockName(roomResultSet.getString("roomBlockName"));
+			userRoom.setRoomLevel(roomResultSet.getInt("roomLevel"));
+			userRoom.setRoomNo(roomResultSet.getInt("roomNo"));
+			userRoom.setUserId(roomResultSet.getInt("userId"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		model.addObject("currentUser", currentUser);
+		model.addObject("userRoomName",
+				userRoom.getRoomBlockName() + "-" + userRoom.getRoomLevel() + "-" + userRoom.getRoomNo());
 
-		System.out.println(currentUser.getUserFullName());
-		System.out.println(currentUser.getUserNationality());
-		System.out.println(currentUser.getUserEmail());
-		System.out.println(currentUser.getUserPhoneNo());
-		System.out.println(currentUser.getUserProfileImage());
+		return model;
+	}
 
+	@RequestMapping("/editStudentProfile")
+	public ModelAndView editStudentProfile(@RequestParam("userId") int userId,
+			@RequestParam("userFullName") String userFullName, @RequestParam("userNationality") String userNationality,
+			@RequestParam("userPhoneNo") String userPhoneNo) {
+		ModelAndView model = new ModelAndView("editStudentProfile");
+		model.addObject("userId", userId);
+		model.addObject("userFullName", userFullName);
+		model.addObject("userNationality", userNationality);
+		model.addObject("userPhoneNo", userPhoneNo);
 
+		return model;
+	}
+
+	@RequestMapping("/editStudentProfilePage")
+	public ModelAndView editStudentProfilePage(@RequestParam("userId") int userId,
+			@RequestParam("userFullName") String userFullName, @RequestParam("userNationality") String userNationality,
+			@RequestParam("userPhoneNo") String userPhoneNo) {
+
+		ModelAndView model = new ModelAndView("student_home");
+		Connection conn = DbConnect.openConnection();
+
+		String updateUserSql = "UPDATE user SET userFullName=? , userNationality=?, userPhoneNo=? WHERE userId=?";
+
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(updateUserSql);
+			preparedStatement.setString(1, userFullName);
+			preparedStatement.setString(2, userNationality);
+			preparedStatement.setString(3, userPhoneNo);
+			preparedStatement.setInt(4, userId);
+
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+
+	@RequestMapping("/editManagerProfile")
+	public ModelAndView editManagerProfile(@RequestParam("userId") int userId,
+			@RequestParam("userFullName") String userFullName, @RequestParam("userNationality") String userNationality,
+			@RequestParam("userPhoneNo") String userPhoneNo) {
+		ModelAndView model = new ModelAndView("editManagerProfile");
+		model.addObject("userId", userId);
+		model.addObject("userFullName", userFullName);
+		model.addObject("userNationality", userNationality);
+		model.addObject("userPhoneNo", userPhoneNo);
+		System.out.println("this is edit manager controller");
+		return model;
+	}
+
+	@RequestMapping("/editManagerProfilePage")
+	public ModelAndView editManagerProfilePage(@RequestParam("userId") int userId,
+			@RequestParam("userFullName") String userFullName, @RequestParam("userNationality") String userNationality,
+			@RequestParam("userPhoneNo") String userPhoneNo) {
+
+		ModelAndView model = new ModelAndView("manager_home");
+		Connection conn = DbConnect.openConnection();
+
+		String updateUserSql = "UPDATE user SET userFullName=? , userNationality=?, userPhoneNo=? WHERE userId=?";
+
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(updateUserSql);
+			preparedStatement.setString(1, userFullName);
+			preparedStatement.setString(2, userNationality);
+			preparedStatement.setString(3, userPhoneNo);
+			preparedStatement.setInt(4, userId);
+
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("this is Update manager controller");
 		return model;
 	}
 

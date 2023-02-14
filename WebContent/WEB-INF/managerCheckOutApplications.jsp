@@ -146,7 +146,7 @@ table {
 									<input type="hidden" name="checkOutApplicationId" value="${application.checkOutApplicationId}" />
 									<button type="submit" class="inspect-approve-link">Approve Check-out</button>
 								</form>
-								<%-- <a class="inspect-approve-link" href="">Approve Check-out</a></td> --%>
+								
 							</tr>
 						</c:if>
 

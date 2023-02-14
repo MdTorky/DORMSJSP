@@ -4,164 +4,160 @@
 <html>
 
 <head>
-    <title>Complaint Applications</title>
+<title>Complaint Applications</title>
 
-    <link rel="stylesheet" href="styles/style2.css">
-    <link rel="shortcut icon" href="/img/favicon.png">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script>
-        $(function () {
-            $('#header').load('assets/header.jsp');
-        })
-       //  call header file and store it in id=header
-    </script>
+<link rel="stylesheet" href="styles/style2.css">
+<link rel="shortcut icon" href="/img/favicon.png">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$('#header').load('assets/header.jsp');
+	})
+	//  call header file and store it in id=header
+</script>
 
-    <style>
-        h1,
-        h2 {
-            color: gold;
-            font-family: verdana;
-            text-align: center;
-        }
+<style>
+h1, h2 {
+	color: gold;
+	font-family: verdana;
+	text-align: center;
+}
 
-        h1 {
-            font-weight: 800;
-            font-size: 50px;
-        }
+h1 {
+	font-weight: 800;
+	font-size: 50px;
+}
 
-        #main_container {
-            padding: 5px;
-        }
+#main_container {
+	padding: 5px;
+}
 
-        .input_field {
-            display: flex;
-            padding: 10px;
-            width: 300px;
-            border-radius: 15px;
-        }
+.input_field {
+	display: flex;
+	padding: 10px;
+	width: 300px;
+	border-radius: 15px;
+}
 
+#sign_up_button {
+	background-color: green;
+	color: black;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-Weight: bold;
+	font-size: 20px;
+	border-radius: 20px;
+	border: solid green;
+}
 
-        #sign_up_button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 20px;
-            border-radius: 5%;
-        }
+#button {
+	display: flex;
+	justify-content: center;
+}
 
-        #button {
-            display: flex;
-            justify-content: center;
-        }
+#top_side, #middle_side, #bottom_side {
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+}
 
-        #top_side,
-        #middle_side,
-        #bottom_side {
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
+input[type="text"]:hover, input[type="number"], input[type="text"],
+	input[type="date"] {
+	border: 1px solid black;
+	margin: 25px;
+}
 
+#button:hover {
+	border: 3px solid #333333;
+}
 
+label, h3 {
+	color: gold;
+	font-family: verdana;
+	/* text-align: center; */
+}
 
-        input[type="text"]:hover,
-        input[type="number"],
-        input[type="text"],
-        input[type="date"] {
-            border: 1px solid black;
-            margin: 25px;
-        }
+.arrange {
+	display: flex;
+}
 
+.arrange #left {
+	margin-left: 200px;
+	text-align: center;
+}
 
+.arrange #tarea {
+	margin-left: 200px;
+	justify-content: center;
+	text-align: center;
+	
+}
 
-        #button:hover {
-            border: 3px solid #333333;
-        }
+textarea {
+	padding: 10px;
+	border-radius: 20px;
+}
 
-        label,
-        h3 {
-            color: gold;
-            font-family: verdana;
-            /* text-align: center; */
-        }
-        .arrange{
-            display:flex;
-
-        }
-        .arrange #left{
-            margin-left: 200px;
-            text-align: center;
-        }
-        .arrange #tarea{
-            margin-left: 200px;
-            justify-content: center;
-            text-align: center;
-        }
-        ::placeholder {  
-            padding: 20px;
-            font-weight: bold;
-            text-align: center;
-            color: #333333;
-        }
-
-
-    </style>
+::placeholder {
+	padding: 20px;
+	font-weight: bold;
+	text-align: center;
+	color: #333333;
+}
+</style>
 </head>
 
-<body >
-<jsp:useBean id="userObj" scope="session" class="com.model.user"></jsp:useBean>
-    <div id="header"></div>
+<body>
+	
+	<jsp:useBean id="userObj" scope="session" class="com.model.user"></jsp:useBean>
+	
+	<div id="header"></div>
 
+	<div id="main_container">
+		<h1>Complaint Form</h1>
+		<form action="addComplaint" method="post">
 
+			<div class="arrange"
+				style="align-items: center; margin: auto; justify-content: center; display: flex;">
+				<div id="left">
 
-    <div id="main_container">
-        <h1>Complaint Form</h1>
-        <form action = "addComplaint" method = "post">
+					<div id="fname">
+						<h3>Name</h3>
+						<input type="text" name="fname"
+							value="<jsp:getProperty property="userFullName" name="userObj"/>"
+							readonly class="input_field">
+					</div>
 
-        <div class="arrange" style="align-items: center; margin: auto; justify-content: center; display: flex;">
-        <div id="left">
+					<div id="room_no">
+						<h3>Room Number</h3>
+						<input type="text" name="roomNo" class="input_field">
+					</div>
 
-                <div id="fname">
-                    <h3>Name</h3>
-                    <input type="text" name="fname" value="<jsp:getProperty property="userFullName" name="userObj"/>" readonly class="input_field">
-                </div>
+					<div id="mnumber">
+						<h3>Mobile</h3>
+						<input type="text" name="mnumber"
+							value="<jsp:getProperty property="userPhoneNo" name="userObj"/>"
+							readonly class="input_field">
+					</div>
 
-                <div id="room_no">
-                    <h3>Room Number</h3>
-                    <input type="text" name="roomNo" class="input_field">
-                </div>
+				</div>
 
-         
+				<div id="tarea">
+					<h3>Complaint</h3>
+					<textarea cols="60" rows="20" name="complaint"
+						placeholder="Write your complaint here"></textarea>
+				</div>
 
+			</div>
 
-                <div id="mnumber">
-                    <h3>Mobile</h3>
-                    <input type="text" name="mnumber" value="<jsp:getProperty property="userPhoneNo" name="userObj"/>" readonly class="input_field">
-                </div>
+			<div id="button">
+				<button type="submit" id="sign_up_button">SUBMIT</button>
+			</div>
 
-              </div>
-               
-                
-           
+		</form>
 
-            <div id="tarea">
-                <h3>Complaint</h3>
-                <textarea cols="60" rows="20" name = "complaint" placeholder="Write your complaint here"></textarea>
-            </div>
-
-        </div>
-
-            <div id="button">
-                <button type="submit" id="sign_up_button">SUBMIT</button>
-            </div>
-
-            
-       
-       </form>
-
-    </div>
+	</div>
 
 </body>
 

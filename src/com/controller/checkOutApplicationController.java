@@ -22,49 +22,47 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class checkOutApplicationController {
-	
-	@RequestMapping("/checkOutApp")
-	public String checkOut(@RequestParam ("check_out_date") Date checkOutDate, @RequestParam ("check_out_time") String checkOutTime, HttpServletRequest request) {
-		
-	    HttpSession session = request.getSession();
-	    Integer userId = (Integer) session.getAttribute("userId");
-	    
-	    java.sql.Date currentDate=new java.sql.Date(System.currentTimeMillis());	        
-	    
-	    try {
-	      Class.forName("com.mysql.cj.jdbc.Driver");
-	      Connection conn = DbConnect.openConnection();
-	      System.out.println("Connection successfully opened : " + conn.getMetaData());
 
-	      
-	      String sql = "INSERT INTO checkoutapplication (checkOutApplicationDate, userCheckOutDate, userCheckOutTime, checkOutApplicationStatus, userId) VALUES (?,?,?,?,?)";
-	      PreparedStatement pstmt = conn.prepareStatement(sql);
-	      
-	      pstmt.setDate(1, currentDate);
-	      pstmt.setDate(2, checkOutDate);
-	      pstmt.setString(3, checkOutTime);
-	      pstmt.setString(4, "Waiting Approval");
-	      pstmt.setInt(5, userId);
-	      
-	      pstmt.executeUpdate();
-		  session.setAttribute("checkOutUserId", userId);
-	      
-	  }
-	    catch (SQLException ex) {
-	      ex.printStackTrace();
-	    }
-	    catch (ClassNotFoundException ex) {
-	      ex.printStackTrace();
-	    }
-	    return "student_home";
-		
+	@RequestMapping("/checkOutApp")
+	public String checkOut(@RequestParam("check_out_date") Date checkOutDate,
+			@RequestParam("check_out_time") String checkOutTime, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		Integer userId = (Integer) session.getAttribute("userId");
+
+		java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DbConnect.openConnection();
+			System.out.println("Connection successfully opened : " + conn.getMetaData());
+
+			String sql = "INSERT INTO checkoutapplication (checkOutApplicationDate, userCheckOutDate, userCheckOutTime, checkOutApplicationStatus, userId) VALUES (?,?,?,?,?)";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			pstmt.setDate(1, currentDate);
+			pstmt.setDate(2, checkOutDate);
+			pstmt.setString(3, checkOutTime);
+			pstmt.setString(4, "Waiting Approval");
+			pstmt.setInt(5, userId);
+
+			pstmt.executeUpdate();
+			session.setAttribute("checkOutUserId", userId);
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return "student_home";
+
 	}
 
 	@RequestMapping("/managerCheckOutApplications")
 	public ModelAndView managerCheckOutApplications() {
 		Connection conn = DbConnect.openConnection();
 		ModelAndView model = new ModelAndView("managerCheckOutApplications");
-		
+
 		String sql = "SELECT * from checkoutapplication";
 		String userSql = "SELECT * from user where userId = ?";
 		ResultSet resultSet, userResultSet;
@@ -84,7 +82,7 @@ public class checkOutApplicationController {
 				int userId = resultSet.getInt("userId");
 				Date checkOutApplicationDate = resultSet.getDate("checkOutApplicationDate");
 				Date userCheckOutDate = resultSet.getDate("userCheckOutDate");
-				String userCheckOutTime = resultSet.getString("userCheckOutTime"); 
+				String userCheckOutTime = resultSet.getString("userCheckOutTime");
 				String checkOutApplicationStatus = resultSet.getString("checkOutApplicationStatus");
 
 				checkOutApplicationInstance.setCheckOutApplicationId(checkOutApplicationId);
@@ -119,16 +117,15 @@ public class checkOutApplicationController {
 			e.printStackTrace();
 		}
 
-		
-		model.addObject("checkOutApplications",checkOutApplications);
+		model.addObject("checkOutApplications", checkOutApplications);
 		model.addObject("applicants", applicants);
 
 		return model;
-	
+
 	}
 
 	@RequestMapping("/roomApproveCheckOut")
-	public ModelAndView approveCheckOut(@RequestParam ("checkOutApplicationId") int checkOutApplicationId) {
+	public ModelAndView approveCheckOut(@RequestParam("checkOutApplicationId") int checkOutApplicationId) {
 		Connection conn = DbConnect.openConnection();
 		ModelAndView model = new ModelAndView("manager_home");
 
@@ -147,5 +144,4 @@ public class checkOutApplicationController {
 		return model;
 	}
 
-    
 }

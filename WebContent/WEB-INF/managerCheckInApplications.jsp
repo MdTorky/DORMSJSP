@@ -17,11 +17,11 @@
 <link rel="shortcut icon" href="/img/favicon.png" />
 <!-- for including header files -->
 <script>
-      $(function () {
-        $("#header").load("assets/SAM_header.jsp");
-      });
-      //  call header file and store it in id=header
-    </script>
+	$(function() {
+		$("#header").load("assets/SAM_header.jsp");
+	});
+	//  call header file and store it in id=header
+</script>
 
 <link rel="shortcut icon" href="/img/favicon.png" />
 
@@ -37,86 +37,7 @@ body {
 	height: 100%;
 	align-items: center;
 }
-/* .navigationBar {
-        width: 65%;
-        height: 40px;
-        margin-top: 2%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        font-weight: bold;
-        color: gold;
-      }
-      .logo-picture {
-        height: 100px;
-        width: 150px;
-        margin-right: 10px;
-      }
 
-      .flex1 {
-        flex-grow: 7;
-      }
-      .flex2 {
-        flex-grow: 1;
-        text-align: center;
-      }
-      
-      .dropbtn {
-        color: gold;
-        padding: 4px;
-        font-size: 130%;
-        border: none;
-        background-color: #333333;
-      }
-
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: transparent;
-        min-width: 300px;
-        box-shadow: 0px 8px 16px 0px rgba(58, 58, 58, 0.2);
-        z-index: 1;
-        left: 50%;
-        right: auto;
-        text-align: center;
-        transform: translate(-50%, 0);
-        line-height: 40px;
-      }
-
-      .dropdown-content a {
-        color: black;
-        text-decoration: none;
-        display: block;
-        padding: 2px;
-      }
-
-      .dropdown-content a:hover {
-        background-color: gold;
-        color: black;
-        font-weight: bold;
-        font-size: 130%;
-        border-radius: 5px;
-        padding: 2px;
-      }
-
-      .dropdown:hover .dropdown-content {
-        display: block;
-        padding: 2px;
-      }
-
-      .dropdown:hover .dropbtn {
-        background-color: gold;
-        color: black;
-        font-weight: bold;
-        font-size: 130%;
-        border-radius: 5px;
-        padding: 2px;
-      } */
 .approve-reject {
 	text-decoration: none;
 	color: gold;
@@ -177,6 +98,25 @@ table {
 	border-spacing: 0.7rem;
 	color: white;
 }
+
+.approve-reject-link {
+	text-decoration: none;
+	color: gold;
+	font-weight: bold;
+	font-size: 130%;
+	padding: 2px;
+	background-color: transparent;
+	border: 0;
+}
+
+.approve-reject-link:hover {
+	background-color: gold;
+	color: black;
+	font-weight: bold;
+	font-size: 130%;
+	border-radius: 5px;
+	padding: 2px;
+}
 </style>
 </head>
 <body>
@@ -184,9 +124,6 @@ table {
 	<div class="flexbox-container">
 		<hr />
 		<div class="page-name">Check-In Applications</div>
-
-
-
 
 		<c:choose>
 
@@ -202,7 +139,6 @@ table {
 						<td>Application Status</td>
 						<td>Action</td>
 					</tr>
-
 
 					<c:forEach items="${checkInApplications}" var="application">
 
@@ -224,10 +160,22 @@ table {
 
 								<td class="table_row">${application.userCheckInDate}</td>
 								<td class="table_row">${application.checkInApplicationStatus}</td>
-								<td class="table_row"><a class="approve-reject" href="">Approve</a>
-									/ <a class="approve-reject" href="">Reject</a></td>
+								<td class="table_row">
+									<%-- <a class="approve-reject" href="">Approve</a> --%>
+									<form action="approveCheckIn" method="post">
+										<input type="hidden" name="checkInApplicationId"
+											value="${application.checkInApplicationId}" /> <input
+											type="hidden" name="userId" value="${application.userId}" />
+										<button type="submit" class="approve-reject-link">Approve</button>
+									</form> / <%-- <a class="approve-reject" href="">Reject</a></td> --%>
+									<form action="rejectCheckIn" method="post">
+										<input type="hidden" name="checkInApplicationId"
+											value="${application.checkInApplicationId}" />
+										<button type="submit" class="approve-reject-link">Reject</button>
+									</form>
 							</tr>
 						</c:if>
+
 
 					</c:forEach>
 
@@ -240,12 +188,13 @@ table {
 
 		</c:choose>
 
-    <br/><br/>
-    <hr class="body_hr"/>
-
-    <div class="page-name">Check-In Applications History</div>
-
+		<br /> <br />
 		<c:if test="${applicationsHistory != 0}">
+
+			<hr class="body_hr" />
+
+			<div class="page-name">Check-In Applications History</div>
+
 			<c:choose>
 
 				<c:when test="${checkInApplications.size() > 0}">
@@ -289,13 +238,12 @@ table {
 					</table>
 				</c:when>
 
-        <c:otherwise>
-				  <h1>There is No history</h1>
-			  </c:otherwise>
+				<c:otherwise>
+					<h1>There is No History</h1>
+				</c:otherwise>
 
 			</c:choose>
-		</c:if>
-
 	</div>
+	</c:if>
 </body>
 </html>

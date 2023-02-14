@@ -24,7 +24,8 @@ import databaseConnection.DbConnect;
 public class loginController {
 
 	@RequestMapping("/loginController")
-	public String add(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String add(@RequestParam("email") String email, @RequestParam("password") String password,
+			HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
 		ResultSet rs = null;
@@ -33,7 +34,7 @@ public class loginController {
 		String userFullName = "";
 		String userPassportNo = "";
 		RequestDispatcher dispatcher = null;
-		String userNationality="";
+		String userNationality = "";
 		String userPhoneNo = "";
 
 		try {
@@ -63,19 +64,18 @@ public class loginController {
 
 			session.setAttribute("userId", userId);
 			session.setAttribute("userType", userType);
-			
+
 			user userObj = new user();
-		    
-		    userObj.setUserEmail(email);
-		    userObj.setUserFullName(userFullName);
-		    userObj.setUserPassportNo(userPassportNo);
-		    userObj.setUserNationality(userNationality);
-		    userObj.setUserPhoneNo(userPhoneNo);
-		    session.setAttribute("userObj", userObj);
+
+			userObj.setUserEmail(email);
+			userObj.setUserFullName(userFullName);
+			userObj.setUserPassportNo(userPassportNo);
+			userObj.setUserNationality(userNationality);
+			userObj.setUserPhoneNo(userPhoneNo);
+			session.setAttribute("userObj", userObj);
 
 			System.out.println("User ID: " + userId);
 			System.out.println("User Type: " + userType);
-			
 
 			if (userType.equals("Manager")) {
 				request.setAttribute("status", "success");
