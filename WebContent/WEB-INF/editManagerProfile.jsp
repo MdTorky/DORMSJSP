@@ -156,6 +156,10 @@ button:hover:before, button:hover:after {
     flex-direction: column;
     align-items: center;
 }
+
+h3 {
+	color:white;
+}
 </style>
 </head>
 <body>
@@ -169,9 +173,9 @@ button:hover:before, button:hover:after {
         <div class="page-name">Edit Manager Profile </div><br><br>
 
 		<input type="hidden" name="userId" value="${userId}" /> 
-        Full Name: <br><input type="text" name="userFullName" class="input_field" value="${userFullName}" /><br>
-		Nationality: <br><input type="text" name="userNationality" class="input_field" value="${userNationality}" /> <br>
-        Phone No: <br><input type="text" name="userPhoneNo" class="input_field" value="${userPhoneNo}" /> <br>
+        <h3>Full Name: </h3><input type="text" name="userFullName" class="input_field" value="${userFullName}" /><br>
+		<h3>Nationality: </h3><input type="text" name="userNationality" class="input_field" value="${userNationality}" /> <br>
+        <h3>Phone No: </h3><input type="text" name="userPhoneNo" class="input_field" value="${userPhoneNo}" /> <br>
 		<br><br><br>
 		<button id="submit">Update Profile</button>
         

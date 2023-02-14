@@ -33,53 +33,7 @@ public class checkInApplicationController {
   HttpSession session = request.getSession();
     Integer userId = (Integer) session.getAttribute("userId");
     java.sql.Date currentDate=new java.sql.Date(System.currentTimeMillis());
-		HttpSession session = request.getSession();
-		Integer userId = (Integer) session.getAttribute("userId");
-		java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
 
-		/*
-		 * checkInApplication checkInObj = new checkInApplication(); ArrayList
-		 * <checkInApplication> checkInList = new ArrayList<checkInApplication>();
-		 * checkInObj.setUserId(userId);
-		 * checkInObj.setCheckInApplicationDate(currentDate);
-		 * checkInObj.setUserCheckInDate(check_in_date);
-		 * checkInObj.setCheckInApplicationStatus("Waiting Approval");
-		 *
-		 * checkInList.add(checkInObj); session.setAttribute("checkInList",
-		 * checkInList);
-		 */
-
-    // try {
-    // Class.forName("com.mysql.cj.jdbc.Driver");
-    // Connection conn = DbConnect.openConnection();
-    // System.out.println("Connection successfully opened : " + conn.getMetaData());
-
-		// String updateUser = "Update user Set userPassportNo=?, userPhoneNo=?,
-		// userNationality=? Where userId=?";
-		// String insertCheckIn = "INSERT INTO checkinapplication
-		// (userId,checkInApplicationDate, userCheckInDate, checkInApplicationStatus)
-		// VALUES(?,?,?,?)";
-		// PreparedStatement pstmt1 = conn.prepareStatement(updateUser);
-		// PreparedStatement pstmt2 = conn.prepareStatement(insertCheckIn);
-
-    // pstmt1.setString(1, passport);
-    // pstmt1.setString(2, phone_number);
-    // pstmt1.setString(3, nationality);
-    // pstmt1.setInt(4, userId);
-    // HttpSession session = request.getSession();
-    // Integer userId = (Integer) session.getAttribute("userId");
-    // java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
-
-    // checkInApplication checkInObj = new checkInApplication();
-    // ArrayList<checkInApplication> checkInList = new
-    // ArrayList<checkInApplication>();
-    // checkInObj.setUserId(userId);
-    // checkInObj.setCheckInApplicationDate(currentDate);
-    // checkInObj.setUserCheckInDate(check_in_date);
-    // checkInObj.setCheckInApplicationStatus("Waiting Approval");
-
-    // checkInList.add(checkInObj);
-    // session.setAttribute("checkInList", checkInList);
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -103,15 +57,20 @@ public class checkInApplicationController {
 
 			pstmt1.executeUpdate();
 			pstmt2.executeUpdate();
+			
+			user userObj = new user();
+			userObj.setUserPassportNo(passport);
 
-			session.setAttribute("passport", passport);
+			//session.setAttribute("passport", passport);
+			session.setAttribute("phone_number", phone_number);
+			session.setAttribute("nationality", nationality);
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
-		return "student_home";
+		return "payment";
 	}
 
   @RequestMapping("/managerCheckInApplications")

@@ -40,13 +40,15 @@ public class checkOutApplicationController {
 			String sql = "INSERT INTO checkoutapplication (checkOutApplicationDate, userCheckOutDate, userCheckOutTime, checkOutApplicationStatus, userId) VALUES (?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
+
 			pstmt.setDate(1, currentDate);
 			pstmt.setDate(2, checkOutDate);
 			pstmt.setString(3, checkOutTime);
 			pstmt.setString(4, "Waiting Approval");
 			pstmt.setInt(5, userId);
-
+			
 			pstmt.executeUpdate();
+
 			session.setAttribute("checkOutUserId", userId);
 
 		} catch (SQLException ex) {
