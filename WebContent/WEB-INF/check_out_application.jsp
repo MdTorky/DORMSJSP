@@ -152,7 +152,7 @@ input[type="text"]:hover, input[type="text"], input[type="date"], input[type="ti
 				<div id="passport_number">
 					<h3>Passport Number</h3>
 					<input type="text" class="input_field"
-						value="${checkOutpassport}"
+						value="<jsp:getProperty property="userPassportNo" name="userObj2"/>"
 						readonly>
 				</div>
 
