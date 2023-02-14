@@ -38,16 +38,27 @@ public class checkOutApplicationController {
 			System.out.println("Connection successfully opened : " + conn.getMetaData());
 
 			String sql = "INSERT INTO checkoutapplication (checkOutApplicationDate, userCheckOutDate, userCheckOutTime, checkOutApplicationStatus, userId) VALUES (?,?,?,?,?)";
+			String sql2 = "Select userPassportNo From user Where userId = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-
+			PreparedStatement pstmt2 = conn.prepareStatement(sql2);
 
 			pstmt.setDate(1, currentDate);
 			pstmt.setDate(2, checkOutDate);
 			pstmt.setString(3, checkOutTime);
 			pstmt.setString(4, "Waiting Approval");
 			pstmt.setInt(5, userId);
-			
+
+			pstmt2.setInt(1, userId);
+
 			pstmt.executeUpdate();
+			ResultSet ps = pstmt2.executeQuery();
+
+			// user user
+
+			while (ps.next()) {
+				String checkOutpassport = ps.getString("userPassportNo");
+				session.setAttribute("checkOutpassport", checkOutpassport);
+			}
 
 			session.setAttribute("checkOutUserId", userId);
 

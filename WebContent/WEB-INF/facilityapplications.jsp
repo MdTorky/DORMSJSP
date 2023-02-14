@@ -267,7 +267,7 @@ table .denyBtn:hover {
 							<td class="table-row"
 								style="color: mediumseagreen; font-weight: bold">${fl.facilityApplicationStatus}</td>
 						</c:if>
-						<c:if test="${fl.facilityApplicationStatus == 'Denied'}">
+						<c:if test="${fl.facilityApplicationStatus == 'Rejected'}">
 							<td class="table-row" style="color: red; font-weight: bold">${fl.facilityApplicationStatus}</td>
 						</c:if>
 						<td class="table_row">
@@ -278,7 +278,7 @@ table .denyBtn:hover {
 							</form>
 							<form action="denyFacility" method="post">
 								<input type="hidden" value="${fl.userId}" name="userId">
-								<button class="denyBtn">Deny</button>
+								<button class="denyBtn">Reject</button>
 							</form>
 						</td>
 					</tr>

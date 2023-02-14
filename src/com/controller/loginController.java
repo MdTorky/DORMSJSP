@@ -65,14 +65,14 @@ public class loginController {
 			session.setAttribute("userId", userId);
 			session.setAttribute("userType", userType);
 
-			user userObj = new user();
+			user userObj2 = new user();
 
-			userObj.setUserEmail(email);
-			userObj.setUserFullName(userFullName);
-			userObj.setUserPassportNo(userPassportNo);
-			userObj.setUserNationality(userNationality);
-			userObj.setUserPhoneNo(userPhoneNo);
-			session.setAttribute("userObj", userObj);
+			userObj2.setUserEmail(email);
+			userObj2.setUserFullName(userFullName);
+			// userObj2.setUserPassportNo(userPassportNo);
+			userObj2.setUserNationality(userNationality);
+			userObj2.setUserPhoneNo(userPhoneNo);
+			session.setAttribute("userObj", userObj2);
 
 			System.out.println("User ID: " + userId);
 			System.out.println("User Type: " + userType);

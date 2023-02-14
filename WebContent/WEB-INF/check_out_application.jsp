@@ -130,6 +130,7 @@ input[type="text"]:hover, input[type="text"], input[type="date"], input[type="ti
 	%>
 
 	<jsp:useBean id="userObj" scope="session" class="com.model.user"></jsp:useBean>
+	    <jsp:useBean id="userObj2" scope="session" class="com.model.user"></jsp:useBean>
 
 
 	<div id="header"></div>
@@ -151,7 +152,7 @@ input[type="text"]:hover, input[type="text"], input[type="date"], input[type="ti
 				<div id="passport_number">
 					<h3>Passport Number</h3>
 					<input type="text" class="input_field"
-						value="<jsp:getProperty property="userPassportNo" name="userObj"/>"
+						value="${checkOutpassport}"
 						readonly>
 				</div>
 

@@ -180,7 +180,7 @@ public class facilityApplicationController {
 			String sql = "Update facilityapplication Set facilityApplicationStatus = ?, facilityApproveRejectRemark = ? Where userId= ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
-			ps.setString(1, "Denied");
+			ps.setString(1, "Rejected");
 			ps.setString(2, facilityRemark);
 			ps.setInt(3, userId);
 
