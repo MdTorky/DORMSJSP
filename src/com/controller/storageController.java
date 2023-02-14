@@ -210,7 +210,7 @@ public class storageController {
 			String sql = "Update storage Set storageStatus = ?, storageApproveRejectRemark = ? Where storageId= ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
-			ps.setString(1, "Denied");
+			ps.setString(1, "Rejected");
 			ps.setString(2, storageRemark);
 			ps.setInt(3, storageId);
 

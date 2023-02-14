@@ -93,7 +93,7 @@
          <c:if test = "${st.storageStatus == 'Approved'}">
         <td class = "table-data" style="color:Green; font-weight:bold">${st.storageStatus}</td>
         </c:if>
-         <c:if test = "${st.storageStatus == 'Denied'}">
+         <c:if test = "${st.storageStatus == 'Rejected'}">
         <td class = "table-data" style="color:red; font-weight:bold">${st.storageStatus}</td>
         </c:if>
         <td class = "table-data">
