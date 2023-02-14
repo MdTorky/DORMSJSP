@@ -155,6 +155,10 @@ button:hover:before, button:hover:after {
 a {
 	text-decoration: none;
 }
+
+th {
+	color:white;
+	}
 </style>
 </head>
 <body>

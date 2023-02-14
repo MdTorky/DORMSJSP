@@ -146,6 +146,10 @@ table {
   border: 0;
   width: 35%;
 }
+
+th {
+	color: white;
+	}
 </style>
 </head>
 <body>

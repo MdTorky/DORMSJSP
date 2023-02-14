@@ -182,7 +182,8 @@ h3 {
         <h3>Full Name: </h3><input type="text" name="userFullName" class="input_field" value="${userFullName}" /><br>
 		<h3>Nationality: </h3><input type="text" name="userNationality" class="input_field" value="${userNationality}" /> <br>
         <h3>Phone No: </h3><input type="text" name="userPhoneNo" class="input_field" value="${userPhoneNo}" /> <br>
-		<br><br><br>
+		<br></br><br></br>
+		
 		<button id="submit">Update Profile</button>
         
 	</form>

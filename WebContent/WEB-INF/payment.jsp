@@ -159,7 +159,7 @@
 
             <div id="passport_number">
                 <h3>Passport Number</h3>
-                <input type="text" class="input_field" name="passport" required value="${passport}"/>
+                <input type="text" class="input_field" name="passport" required value="<jsp:getProperty property="userPassportNo" name="userObj"/>"/>
 					
             </div>
 
