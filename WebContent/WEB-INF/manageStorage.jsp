@@ -105,7 +105,7 @@
                 </form>
                 <form action="denyStorage" method="post">
                 <input type="hidden" value="${st.storageId}" name="storageId">
-                <button class="deny">Deny</button>
+                <button class="deny">Reject</button>
                 </form>
             </div>
         </td>
